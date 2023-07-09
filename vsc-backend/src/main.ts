@@ -5,9 +5,11 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     cors: {
-      origin: ['admin.vstream.asia', 'web.vstream.asia'],
+      origin: ['hq.vstream.asia'],
     },
   });
+
+  app.setGlobalPrefix('backend');
 
   const options = new DocumentBuilder()
     .setTitle('API')

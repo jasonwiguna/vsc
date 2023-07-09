@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import { fetchActiveSubscriptions, invalidateSubsciption } from '../services/subscriptionService';
+import styles from '../../styles/Home.module.css';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, styled, tableCellClasses } from '@mui/material';
 import { useMutation, useQuery } from 'react-query';
 import { addPricing, fetchPricing } from '../services/pricingService';

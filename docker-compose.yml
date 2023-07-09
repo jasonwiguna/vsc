@@ -1,16 +1,27 @@
 version: '3.7'
 
 services:
-  nginx-proxy:
-    image: jwilder/nginx-proxy
+  traefik:
+    # The official v2 Traefik docker image
+    image: traefik:v2.10
+    # Enables the web UI and tells Traefik to listen to docker
+    command: --api.insecure=true --providers.docker
     ports:
+      # The HTTP port
       - "80:80"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
     volumes:
-      - /var/run/docker.sock:/tmp/docker.sock
-    environment:
-      - ENABLE_IPV6=true
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - onebox-network
   # frontend:
   #   container_name: frontend
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.website.entrypoints=http"
+  #     - "traefik.http.routers.website.rule=PathPrefix(`/website`)"
   #   build:
   #     context: ./vsc-frontend
   #     dockerfile: website.dockerfile
@@ -34,6 +45,10 @@ services:
   #     - VIRTUAL_PORT=${CLIENT_PORT}
   admin:
     container_name: admin
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.admin.entrypoints=http"
+      - "traefik.http.routers.admin.rule=PathPrefix(`/admin`)"
     build:
       context: ./vsc-admin
       dockerfile: admin.dockerfile
@@ -57,10 +72,14 @@ services:
       - VIRTUAL_PORT=${ADMIN_PORT}
   backend:
     container_name: backend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backend.entrypoints=http"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/backend`)"
     build:
       context: ./vsc-backend
       dockerfile: backend.dockerfile
-      target: development
+      target: production
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
@@ -71,9 +90,7 @@ services:
     env_file:
       - .env
     networks:
-      default:
-          aliases:
-              - backend
+      - onebox-network
     depends_on:
       - db
     expose:
