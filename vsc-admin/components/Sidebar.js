@@ -101,13 +101,13 @@ export default function MiniDrawer() {
   };
 
   const sidebarOptions = [{
-    path: '/',
+    path: '/admin',
     description: 'Users'
   }, {
-    path: '/subscriptions',
+    path: '/admin/subscriptions',
     description: 'Subscriptions'
   }, {
-    path: '/packages',
+    path: '/admin/packages',
     description: 'Packages'
   }]
 
