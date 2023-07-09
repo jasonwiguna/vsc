@@ -13,6 +13,7 @@ services:
       - "8080:8080"
     volumes:
       # So that Traefik can listen to the Docker events
+      - /etc/traefik:/etc/traefik
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - onebox-network
