@@ -2,7 +2,7 @@ import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, styled, tableCellClasses } from '@mui/material';
 import { useMutation, useQuery } from 'react-query';
-import { addPricing, fetchPricing } from '../services/pricingService';
+import { addPricing, fetchPricing } from '../../services/pricingService';
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import { Formik, Form as FormikForm } from 'formik'
