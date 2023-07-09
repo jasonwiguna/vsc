@@ -28,7 +28,7 @@ services:
   #   expose:
   #     - 80
   #   environment:
-  #     - "VIRTUAL_HOST=web.vstream.asia"
+  #     - "VIRTUAL_HOST=web.hq.vstream.asia"
   admin:
     container_name: admin
     build:
@@ -50,7 +50,7 @@ services:
     expose:
       - 8080
     environment:
-      - "VIRTUAL_HOST=admin.vstream.asia"
+      - "VIRTUAL_HOST=admin.hq.vstream.asia"
   backend:
     container_name: backend
     build:
@@ -73,7 +73,7 @@ services:
     expose:
       - 3000
     environment:
-      - "VIRTUAL_HOST=backend.vstream.asia"
+      - "VIRTUAL_HOST=backend.hq.vstream.asia"
   db:
     image: 'postgres:14.1-alpine'
     restart: always
