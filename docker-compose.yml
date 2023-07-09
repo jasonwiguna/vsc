@@ -7,28 +7,28 @@ services:
       - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
-  frontend:
-    container_name: frontend
-    build:
-      context: ./vsc-frontend
-      dockerfile: website.dockerfile
-    volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-    ports:
-      - ${CLIENT_PORT}:3000
-    command: yarn start
-    env_file:
-      - .env
-    networks:
-      - onebox-network
-    depends_on:
-      - backend
-      - db
-    expose:
-      - 80
-    environment:
-      - "VIRTUAL_HOST=web.vstream.asia"
+  # frontend:
+  #   container_name: frontend
+  #   build:
+  #     context: ./vsc-frontend
+  #     dockerfile: website.dockerfile
+  #   volumes:
+  #     - .:/usr/src/app
+  #     - /usr/src/app/node_modules
+  #   ports:
+  #     - ${CLIENT_PORT}:3000
+  #   command: yarn start
+  #   env_file:
+  #     - .env
+  #   networks:
+  #     - onebox-network
+  #   depends_on:
+  #     - backend
+  #     - db
+  #   expose:
+  #     - 80
+  #   environment:
+  #     - "VIRTUAL_HOST=web.vstream.asia"
   admin:
     container_name: admin
     build:
