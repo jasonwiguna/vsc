@@ -4,12 +4,12 @@ import { backendAxiosInstance } from './axiosInstance'
 // Hits the backend for querying logged-in user
 export function fetchPricing() {
     return backendAxiosInstance
-      .get(`/pricing`)
+      .get(`/backend/pricing`)
       .then((res) => res.data)
   }
 
 export function addPricing(values) {
   return backendAxiosInstance
-    .post(`/pricing/add`, values)
+    .post(`/backend/pricing/add`, values)
     .then((res) => res.data)
 }

@@ -9,6 +9,8 @@ async function bootstrap() {
     },
   });
 
+  app.setGlobalPrefix('backend');
+
   const options = new DocumentBuilder()
     .setTitle('API')
     .setDescription('API docs')
@@ -17,7 +19,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('docs', app, document);
+  SwaggerModule.setup('backend/docs', app, document);
 
   await app.listen(process.env.SERVER_PORT);
 }

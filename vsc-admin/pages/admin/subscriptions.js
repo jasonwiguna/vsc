@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import { fetchAllSubscriptions } from '../services/subscriptionService';
+import styles from '../../styles/Home.module.css';
+import { fetchAllSubscriptions } from '../../services/subscriptionService';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, styled, tableCellClasses } from '@mui/material';
 import { useQuery } from 'react-query';
 

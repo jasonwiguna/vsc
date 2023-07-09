@@ -4,16 +4,15 @@ services:
   traefik:
     # The official v2 Traefik docker image
     image: traefik:v2.10
+    # Enables the web UI and tells Traefik to listen to docker
+    command: --api.insecure=true --providers.docker
     ports:
       # The HTTP port
       - "80:80"
-      - "81:81"
-      - "83:83"
       # The Web UI (enabled by --api.insecure=true)
       - "8080:8080"
     volumes:
       # So that Traefik can listen to the Docker events
-      - /etc/traefik:/etc/traefik
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - onebox-network
@@ -48,8 +47,8 @@ services:
     container_name: admin
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.admin.entrypoints=admin"
-      - "traefik.http.routers.admin.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.admin.entrypoints=http"
+      - "traefik.http.routers.admin.rule=PathPrefix(`/admin`) || PathPrefix(`/_next`)"
     build:
       context: ./vsc-admin
       dockerfile: admin.dockerfile
@@ -75,8 +74,8 @@ services:
     container_name: backend
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.entrypoints=backend"
-      - "traefik.http.routers.backend.rule=PathPrefix(`/`)"
+      - "traefik.http.routers.backend.entrypoints=http"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/backend`)"
     build:
       context: ./vsc-backend
       dockerfile: backend.dockerfile
