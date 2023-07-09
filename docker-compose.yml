@@ -7,6 +7,8 @@ services:
       - "80:80"
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock
+    environment:
+      - ENABLE_IPV6=true
   # frontend:
   #   container_name: frontend
   #   build:
