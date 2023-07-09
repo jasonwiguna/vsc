@@ -71,7 +71,9 @@ services:
     env_file:
       - .env
     networks:
-      - onebox-network
+      default:
+          aliases:
+              - backend
     depends_on:
       - db
     expose:
