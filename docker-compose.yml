@@ -47,8 +47,8 @@ services:
     container_name: admin
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.admin.entrypoints=http"
-      - "traefik.http.routers.admin.rule=PathPrefix(`/admin`)"
+      - "traefik.http.routers.admin.entrypoints=admin"
+      - "traefik.http.routers.admin.rule=PathPrefix(`/`)"
     build:
       context: ./vsc-admin
       dockerfile: admin.dockerfile
@@ -74,8 +74,8 @@ services:
     container_name: backend
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.entrypoints=http"
-      - "traefik.http.routers.backend.rule=PathPrefix(`/backend`)"
+      - "traefik.http.routers.backend.entrypoints=backend"
+      - "traefik.http.routers.backend.rule=PathPrefix(`/`)"
     build:
       context: ./vsc-backend
       dockerfile: backend.dockerfile
