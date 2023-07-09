@@ -8,7 +8,7 @@ import { Modal } from 'react-bootstrap';
 import { Formik, Form as FormikForm } from 'formik'
 import * as Yup from 'yup'
 import { Row, Col, Form } from 'react-bootstrap'
-import { MyTextInput } from '../components/MyInput';
+import { MyTextInput } from '../../components/MyInput';
 
 const statusMap = {
   ERROR: 'ERROR',
