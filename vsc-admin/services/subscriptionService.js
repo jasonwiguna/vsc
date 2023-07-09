@@ -1,0 +1,21 @@
+import { backendAxiosInstance } from './axiosInstance'
+
+/* Fetchers */
+// Hits the backend for querying logged-in user
+export function fetchActiveSubscriptions() {
+  return backendAxiosInstance
+    .get(`/subscriptions/active`)
+    .then((res) => res.data)
+}
+
+export function fetchAllSubscriptions() {
+  return backendAxiosInstance
+    .get(`/subscriptions/all`)
+    .then((res) => res.data)
+}
+
+export function invalidateSubsciption(values) {
+  return backendAxiosInstance
+    .post(`/subscriptions`, values)
+    .then((res) => res.data)
+}

@@ -1,0 +1,98 @@
+version: '3.7'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+  frontend:
+    container_name: frontend
+    build:
+      context: ./vsc-frontend
+      dockerfile: website.dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - ${CLIENT_PORT}:3000
+    command: yarn start
+    env_file:
+      - .env
+    networks:
+      - onebox-network
+    depends_on:
+      - backend
+      - db
+    expose:
+      - 80
+    environment:
+      - "VIRTUAL_HOST=web.vstream.asia"
+  admin:
+    container_name: admin
+    build:
+      context: ./vsc-admin
+      dockerfile: admin.dockerfile
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - ${ADMIN_PORT}:${ADMIN_PORT}
+    command: yarn start
+    env_file:
+      - .env
+    networks:
+      - onebox-network
+    depends_on:
+      - backend
+      - db
+    expose:
+      - 8080
+    environment:
+      - "VIRTUAL_HOST=admin.vstream.asia"
+  backend:
+    container_name: backend
+    build:
+      context: ./vsc-backend
+      dockerfile: backend.dockerfile
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+      - 9229:9229
+    command: npm run start:debug
+    env_file:
+      - .env
+    networks:
+      - onebox-network
+    depends_on:
+      - db
+    expose:
+      - 3000
+    environment:
+      - "VIRTUAL_HOST=backend.vstream.asia"
+  db:
+    image: 'postgres:14.1-alpine'
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_HOST: ${POSTGRES_HOST}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data-vsc
+    networks:
+      - onebox-network
+networks:
+  onebox-network:
+volumes:
+  pgdata:
+  data:
+  db:
+    driver: local

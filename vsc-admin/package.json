@@ -1,0 +1,35 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --ext .js",
+    "format": "prettier --write \"**/*.{js,scss,css,html}\" --ignore-path ../.prettierignore"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/core": "^5.0.0-alpha.54",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.5",
+    "@mui/system": "^5.13.5",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.4.1",
+    "caniuse-lite": "^1.0.30001512",
+    "formik": "^2.1.4",
+    "hoist-non-react-statics": "^3.3.2",
+    "next": "^9.5.0",
+    "nuka-carousel": "^4.7.1",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.0.0",
+    "react-dom": "^16.13.1",
+    "react-is": "^16.13.1",
+    "react-query": "^3.12.1",
+    "react-scripts": "^5.0.1",
+    "webpack": "^5.88.1",
+    "yup": "^0.32.8"
+  }
+}
