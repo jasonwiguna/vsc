@@ -28,10 +28,10 @@ services:
   #     - backend
   #     - db
   #   expose:
-  #     - "8080"
+  #     - ${CLIENT_PORT}
   #   environment:
   #     - VIRTUAL_HOST=web.hq.vstream.asia
-  #     - VIRTUAL_PORT=8080
+  #     - VIRTUAL_PORT=${CLIENT_PORT}
   admin:
     container_name: admin
     build:
@@ -41,7 +41,7 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - ${ADMIN_PORT}:${ADMIN_PORT}
+      - ${ADMIN_PORT}:3000
     command: yarn start
     env_file:
       - .env
@@ -51,10 +51,10 @@ services:
       - backend
       - db
     expose:
-      - "8081"
+      - ${ADMIN_PORT}
     environment:
       - VIRTUAL_HOST=admin.hq.vstream.asia
-      - VIRTUAL_PORT=8081
+      - VIRTUAL_PORT=${ADMIN_PORT}
   backend:
     container_name: backend
     build:
@@ -65,7 +65,7 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-      - ${SERVER_PORT}:${SERVER_PORT}
+      - ${SERVER_PORT}:3000
       - 9229:9229
     command: npm run start:debug
     env_file:
@@ -75,10 +75,10 @@ services:
     depends_on:
       - db
     expose:
-      - "3000"
+      - ${SERVER_PORT}
     environment:
       - VIRTUAL_HOST=backend.hq.vstream.asia
-      - VIRTUAL_PORT=3000
+      - VIRTUAL_PORT=${SERVER_PORT}
   db:
     image: 'postgres:14.1-alpine'
     restart: always
