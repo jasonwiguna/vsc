@@ -4,9 +4,10 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    cors: {
-      origin: ['hq.vstream.asia'],
-    },
+    cors: true,
+    // {
+    //   origin: ['hq.vstream.asia'],
+    // },
   });
 
   app.setGlobalPrefix('backend');
