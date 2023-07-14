@@ -1,7 +1,6 @@
 import { backendAxiosInstance } from './axiosInstance'
 
 /* Fetchers */
-// Hits the backend for querying logged-in user
 export function fetchPricing() {
     return backendAxiosInstance
       .get(`/backend/pricing`)

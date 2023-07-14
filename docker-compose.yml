@@ -8,7 +8,7 @@ services:
     command: --api.insecure=true --providers.docker
     ports:
       # The HTTP port
-      - "80:80"
+      - "8002:80"
       # The Web UI (enabled by --api.insecure=true)
       - "8080:8080"
     volumes:
@@ -16,33 +16,30 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - onebox-network
-  # frontend:
-  #   container_name: frontend
-  #   labels:
-  #     - "traefik.enable=true"
-  #     - "traefik.http.routers.website.entrypoints=http"
-  #     - "traefik.http.routers.website.rule=PathPrefix(`/website`)"
-  #   build:
-  #     context: ./vsc-frontend
-  #     dockerfile: website.dockerfile
-  #   volumes:
-  #     - .:/usr/src/app
-  #     - /usr/src/app/node_modules
-  #   ports:
-  #     - ${CLIENT_PORT}:3000
-  #   command: yarn start
-  #   env_file:
-  #     - .env
-  #   networks:
-  #     - onebox-network
-  #   depends_on:
-  #     - backend
-  #     - db
-  #   expose:
-  #     - ${CLIENT_PORT}
-  #   environment:
-  #     - VIRTUAL_HOST=web.hq.vstream.asia
-  #     - VIRTUAL_PORT=${CLIENT_PORT}
+    restart: unless-stopped
+  frontend:
+    container_name: frontend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.website.entrypoints=http"
+      - "traefik.http.routers.website.rule=Host(`web.vstream.asia`)"
+    build:
+      context: ./vsc-frontend
+      dockerfile: website.dockerfile
+    volumes:
+      - ./vsc-frontend:/usr/src/app/vsc-frontend
+      - /usr/src/app/vsc-frontend/node_modules/
+    ports:
+      - ${CLIENT_PORT}:3000
+    command: yarn start
+    env_file:
+      - .env
+    networks:
+      - onebox-network
+    depends_on:
+      - backend
+      - db
+    restart: unless-stopped
   admin:
     container_name: admin
     labels:
@@ -53,8 +50,8 @@ services:
       context: ./vsc-admin
       dockerfile: admin.dockerfile
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./vsc-admin:/usr/src/app/vsc-admin
+      - /usr/src/app/vsc-admin/node_modules/
     ports:
       - ${ADMIN_PORT}:3000
     command: yarn start
@@ -65,11 +62,7 @@ services:
     depends_on:
       - backend
       - db
-    expose:
-      - ${ADMIN_PORT}
-    environment:
-      - VIRTUAL_HOST=admin.hq.vstream.asia
-      - VIRTUAL_PORT=${ADMIN_PORT}
+    restart: unless-stopped
   backend:
     container_name: backend
     labels:
@@ -81,8 +74,8 @@ services:
       dockerfile: backend.dockerfile
       target: production
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - ./vsc-backend:/usr/src/app/vsc-backend
+      - /usr/src/app/vsc-backend/node_modules
     ports:
       - ${SERVER_PORT}:3000
       - 9229:9229
@@ -93,11 +86,7 @@ services:
       - onebox-network
     depends_on:
       - db
-    expose:
-      - ${SERVER_PORT}
-    environment:
-      - VIRTUAL_HOST=backend.hq.vstream.asia
-      - VIRTUAL_PORT=${SERVER_PORT}
+    restart: unless-stopped
   db:
     image: 'postgres:14.1-alpine'
     restart: always
@@ -110,7 +99,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - db:/var/lib/postgresql/data-vsc
+      - ./postgres-data:/var/lib/postgresql/data-vsc
     networks:
       - onebox-network
 networks:

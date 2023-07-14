@@ -22,7 +22,6 @@ COPY package*.json ./
 RUN npm install --only=production
 
 COPY . .
-COPY ./.env .
 
 COPY --from=development /usr/src/app/vsc-backend/dist ./dist
 
