@@ -13,23 +13,23 @@ import { useRouter } from 'next/router'
 
 const pages = [
   {
-    url: '#home',
+    url: '/#home',
     description: 'Home'
   },
   {
-    url: '#about',
+    url: '/#about',
     description: 'About Us'
   },
   {
-    url: '#resources',
+    url: '/resources#resources',
     description: 'Resources'
   },
   {
-    url: '#partners',
+    url: '/#partners',
     description: 'Partners'
   },
   {
-    url: '#contact',
+    url: '/#contact',
     description: 'Contact Us'
   },
 ];

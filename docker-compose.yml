@@ -74,8 +74,8 @@ services:
       dockerfile: backend.dockerfile
       target: production
     volumes:
-      - ./vsc-backend:/usr/src/app/vsc-backend
-      - /usr/src/app/vsc-backend/node_modules
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
     ports:
       - ${SERVER_PORT}:3000
       - 9229:9229
