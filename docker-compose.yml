@@ -8,7 +8,7 @@ services:
     command: --api.insecure=true --providers.docker
     ports:
       # The HTTP port
-      - "8002:80"
+      - "80:80"
       # The Web UI (enabled by --api.insecure=true)
       - "8080:8080"
     volumes:
@@ -23,6 +23,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.website.entrypoints=http"
       - "traefik.http.routers.website.rule=Host(`web.vstream.asia`)"
+      - "traefik.http.services.website.loadbalancer.server.port=8001"
     build:
       context: ./vsc-frontend
       dockerfile: website.dockerfile
@@ -45,7 +46,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.admin.entrypoints=http"
-      - "traefik.http.routers.admin.rule=PathPrefix(`/admin`) || PathPrefix(`/_next`)"
+      - "traefik.http.routers.admin.rule=Host(`db.vstream.asia`) && (PathPrefix(`/admin`) || PathPrefix(`/_next`))"
+      - "traefik.http.services.admin.loadbalancer.server.port=8002"
     build:
       context: ./vsc-admin
       dockerfile: admin.dockerfile
@@ -68,7 +70,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.backend.entrypoints=http"
-      - "traefik.http.routers.backend.rule=PathPrefix(`/backend`)"
+      - "traefik.http.routers.backend.rule=Host(`db.vstream.asia`) && PathPrefix(`/backend`)"
+      - "traefik.http.services.backend.loadbalancer.server.port=8002"
     build:
       context: ./vsc-backend
       dockerfile: backend.dockerfile
