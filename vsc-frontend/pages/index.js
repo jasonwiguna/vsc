@@ -75,7 +75,7 @@ export default function Home() {
   const { mutate, error } = useMutation(subscribe, {
     onSuccess: () => {
       setSubmissionStatus(statusMap.SUCCESS)
-      handleCloseForm()
+      handleClose()
     },
     onError: () => setSubmissionStatus(statusMap.ERROR),
   })

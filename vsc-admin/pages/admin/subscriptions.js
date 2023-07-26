@@ -43,6 +43,7 @@ export default function Subscriptions() {
           <TableHead>
             <TableRow>
               <StyledTableCell>User Name</StyledTableCell>
+              <StyledTableCell align="right">License Key</StyledTableCell>
               <StyledTableCell align="right">Email</StyledTableCell>
               <StyledTableCell align="right">Phone Number</StyledTableCell>
               <StyledTableCell align="right">Registered At</StyledTableCell>
@@ -57,6 +58,7 @@ export default function Subscriptions() {
                 <StyledTableCell component="th" scope="row">
                   {row.user.firstname} {row.user.lastname}
                 </StyledTableCell>
+                <StyledTableCell align="right">{row.key}</StyledTableCell>
                 <StyledTableCell align="right">{row.user.email}</StyledTableCell>
                 <StyledTableCell align="right">{row.user.phone}</StyledTableCell>
                 <StyledTableCell align="right">{new Date(row.user.createdAt).toLocaleDateString("en-US", options)}</StyledTableCell>
