@@ -108,4 +108,27 @@ export class SubscriptionsService {
       },
     });
   }
+
+  /**
+   * Find a single subscription by user email and license key.
+   *
+   * @param email The users email to filter by.
+   * @param key The subscription key to filter by.
+   * @returns {Subscription}
+   */
+  async findActiveSubscriptionByLicenseKey(
+    request: EnterLicenseKeyDto,
+  ): Promise<Subscription | undefined> {
+    const user = await this.userModel.findOne({
+      where: { email: request.email },
+    });
+    return this.subscriptionModel.findOne({
+      where: {
+        userId: user.id,
+        key: request.key.replace('-', '').toLowerCase(),
+        subscriptionDate: LessThanOrEqual(new Date()),
+        expirationDate: MoreThanOrEqual(new Date()),
+      },
+    });
+  }
 }

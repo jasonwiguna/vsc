@@ -147,13 +147,25 @@ export class UsersController {
   async enterlk(@Body() request: EnterLicenseKeyDto) {
     try {
       const result: InstanceType<typeof Subscription> =
-        await this.subscriptionsService.findSubscriptionByLicenseKey(request);
+        await this.subscriptionsService.findActiveSubscriptionByLicenseKey(
+          request,
+        );
 
       if (result) {
-        return {
-          success: true,
-          response: this.usersService.updateHardwareId(request),
-        };
+        if (request.hid) {
+          return {
+            success: true,
+            response: this.usersService.updateHardwareId(request),
+          };
+        } else {
+          return new UnauthorizedException({
+            success: false,
+            response: {
+              success: false,
+              message: 'Hardware ID not found',
+            },
+          });
+        }
       } else {
         return new UnauthorizedException({
           success: false,
@@ -194,25 +206,35 @@ export class UsersController {
   @Post('/validateHid')
   async validateHid(@Body() request: ValidateHidDto) {
     try {
-      const user: InstanceType<typeof User> =
-        await this.usersService.findOneHid(request.hid);
+      if (request.hid) {
+        const user: InstanceType<typeof User> =
+          await this.usersService.findOneHid(request.hid);
 
-      if (user) {
-        const subscription = await this.subscriptionsService.findOneByUserId(
-          user.id,
-        );
-        if (subscription) {
-          if (subscription.expirationDate > new Date()) {
-            return {
-              success: true,
-              response: subscription,
-            };
+        if (user) {
+          const subscription = await this.subscriptionsService.findOneByUserId(
+            user.id,
+          );
+          if (subscription) {
+            if (subscription.expirationDate > new Date()) {
+              return {
+                success: true,
+                response: subscription,
+              };
+            } else {
+              return new UnauthorizedException({
+                success: false,
+                response: {
+                  success: false,
+                  message: 'Subscription has expired',
+                },
+              });
+            }
           } else {
             return new UnauthorizedException({
               success: false,
               response: {
                 success: false,
-                message: 'Subscription has expired',
+                message: 'There is no active subscription',
               },
             });
           }
@@ -221,7 +243,7 @@ export class UsersController {
             success: false,
             response: {
               success: false,
-              message: 'There is no active subscription',
+              message: 'Invalid hardware ID',
             },
           });
         }
@@ -230,7 +252,7 @@ export class UsersController {
           success: false,
           response: {
             success: false,
-            message: 'Invalid hardware ID',
+            message: 'Hardware ID not found',
           },
         });
       }
