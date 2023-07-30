@@ -18,3 +18,9 @@ export function invalidateSubsciption(values) {
     .post(`/backend/subscriptions`, values)
     .then((res) => res.data)
 }
+
+export function subscribe(values) {
+return backendAxiosInstance
+  .post(`/backend/subscribe`, values)
+  .then((res) => res.data)
+}

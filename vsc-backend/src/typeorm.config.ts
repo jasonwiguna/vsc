@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
 import entities from 'src/modules/entities/index';
 import { CreateTables1686219818833 } from 'src/migrations/1686219818833-CreateTables';
+import { CreateTableAuthentication1690479228870 } from 'src/migrations/1690479228870-CreateTableAuthentication';
 
 config();
 
@@ -16,5 +17,8 @@ export default new DataSource({
   password: configService.get('POSTGRES_PASSWORD'),
   database: configService.get('POSTGRES_DB'),
   entities,
-  migrations: [CreateTables1686219818833],
+  migrations: [
+    CreateTables1686219818833,
+    CreateTableAuthentication1690479228870,
+  ],
 });

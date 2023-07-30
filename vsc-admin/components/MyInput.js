@@ -47,6 +47,10 @@ export function MyTextInput(props) {
   return <MyBaseInput type="text" {...props} />
 }
 
+export function MyPasswordInput(props) {
+  return <MyBaseInput type="password" {...props} />
+}
+
 export function MySelect(props) {
   return <MyBaseInput as="select" custom {...props} />
 }

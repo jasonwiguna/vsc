@@ -101,7 +101,7 @@ export default function MiniDrawer() {
   };
 
   const sidebarOptions = [{
-    path: '/admin',
+    path: '/admin/users',
     description: 'Users'
   }, {
     path: '/admin/subscriptions',

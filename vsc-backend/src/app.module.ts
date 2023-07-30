@@ -10,6 +10,7 @@ import entities from 'src/modules/entities/index';
 import 'dotenv/config';
 import { SubscriptionsModule } from './modules/subscriptions/subscriptions.module';
 import { PricingPackagesModule } from './modules/pricingPackages/pricingPackages.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { PricingPackagesModule } from './modules/pricingPackages/pricingPackages
       port: process.env.POSTGRES_PORT as unknown as number,
       entities,
     }),
+    AuthModule,
     UsersModule,
     SubscriptionsModule,
     PricingPackagesModule,

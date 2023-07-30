@@ -1,38 +1,50 @@
 import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
-import { fetchActiveSubscriptions, invalidateSubsciption } from '../../services/subscriptionService';
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, styled, tableCellClasses } from '@mui/material';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation } from 'react-query';
+import { fetchMe, useAuthenticate } from '../../services/auth';
+import { Form as FormikForm, Formik } from 'formik'
+import * as Yup from 'yup'
+import { Row, Col, Form } from 'react-bootstrap'
+import { MyEmailInput, MyPasswordInput } from '../../components/MyInput';
+import { useState } from 'react';
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
+const statusMap = {
+  IDLE: 'IDLE',
+  ERROR: 'ERROR',
+  SUBMITTING: 'SUBMITTING',
+  SUCCESS: 'SUCCESS',
+}
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
+const paramMap = {
+  email: 'email',
+  password: 'password',
+}
 
-export default function Home() {
-  const { status, data, refetch } = useQuery(
-    ['activeSubscriptions'], () => fetchActiveSubscriptions()
-  )
+const validationSchema = Yup.object({
+  [paramMap.email]: Yup.string().email().required(),
+  [paramMap.password]: Yup.string().required(),
+})
 
-  const { mutate, error } = useMutation(invalidateSubsciption, {
-    onSuccess: () => {
-      refetch()
+const initialValues = {
+  email: '',
+  password: '',
+}
+
+export default function Admin() {
+  const { login } = useAuthenticate()
+  const [submissionStatus, setSubmissionStatus] = useState(statusMap.IDLE)
+
+  const mutate = useMutation(fetchMe, {
+    onSuccess: (res) => {
+      console.log(res)
+      if (res && res.access_token) {
+        login({ accessToken: res.access_token })
+        setSubmissionStatus(statusMap.SUCCESS)
+      } else {
+        setSubmissionStatus(statusMap.ERROR)
+      }
     },
+    onError: () => setSubmissionStatus(statusMap.ERROR),
   })
 
   return (
@@ -42,32 +54,49 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 700 }} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>User Name</StyledTableCell>
-              <StyledTableCell align="right">Email</StyledTableCell>
-              <StyledTableCell align="right">Phone Number</StyledTableCell>
-              <StyledTableCell align="right">Plan</StyledTableCell>
-              <StyledTableCell align="right">Action</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data?.map((row) => (
-              <StyledTableRow key={row.id}>
-                <StyledTableCell component="th" scope="row">
-                  {row.user.firstname} {row.user.lastname}
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.user.email}</StyledTableCell>
-                <StyledTableCell align="right">{row.user.phone}</StyledTableCell>
-                <StyledTableCell align="right">{row.pricingPackage.packageName}</StyledTableCell>
-                <StyledTableCell align="right"><a onClick={() => mutate({ id: row.user.id })} style={{ cursor: 'pointer' }}>Invalidate</a></StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={(values) => {
+          setSubmissionStatus(statusMap.SUBMITTING)
+          mutate.mutateAsync(values)
+        }}
+      >
+        {(values) => <FormikForm>
+          <Row className="mt-2">
+            <div>
+              <Form.Row>
+                <Col md={6} className="pl-3">
+                  {/* email */}
+                  <MyEmailInput
+                    label="Email"
+                    id="email"
+                    name={paramMap.email}
+                    placeholder="example@email.com"
+                    required
+                    className="mb-3"
+                  />
+                </Col>
+                <Col md={6} className="pl-3">
+                  {/* Password */}
+                  <MyPasswordInput
+                    label="Password"
+                    id="password"
+                    name={paramMap.password}
+                    placeholder="********"
+                    required
+                    className="mb-3"
+                  />
+                </Col>
+              </Form.Row>
+            </div>
+          </Row>
+
+          <div className='d-flex flex-row my-3 justify-content-center'>
+            <button disabled={submissionStatus == statusMap.SUBMITTING} type='submit'>Login</button>
+          </div>
+        </FormikForm>}
+      </Formik>
 
       <style jsx>{`
         main {

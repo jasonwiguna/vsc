@@ -6,6 +6,7 @@ import {
   BadRequestException,
   UnauthorizedException,
   Get,
+  UseGuards,
 } from '@nestjs/common';
 import {
   CreateSubscriptionDto,
@@ -27,6 +28,7 @@ import { ErrorResponse, SuccessfulResponse } from '../dto/responses.dto';
 import { UsersService } from '../users/users.service';
 import { User } from '../entities/user.schema';
 import * as crypto from 'crypto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller()
 export class SubscriptionsController {
@@ -35,6 +37,8 @@ export class SubscriptionsController {
     private usersService: UsersService,
   ) {}
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Get Subscriptions' })
   @ApiResponse({
     status: 200,
@@ -62,6 +66,8 @@ export class SubscriptionsController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Get Active Subscriptions' })
   @ApiResponse({
     status: 200,
@@ -144,6 +150,8 @@ export class SubscriptionsController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Renew Subscription' })
   @ApiResponse({
     status: 201,

@@ -6,6 +6,7 @@ import {
   BadRequestException,
   UnauthorizedException,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/createUser.dto';
 import { UsersService } from './users.service';
@@ -26,6 +27,7 @@ import { EnterLicenseKeyDto } from './dto/enterLicenseKey.dto';
 import { Subscription } from '../entities/subscription.schema';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 import { InvalidateHidDto, ValidateHidDto } from './dto/validateHid.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller()
 export class UsersController {
@@ -158,7 +160,7 @@ export class UsersController {
             response: this.usersService.updateHardwareId(request),
           };
         } else {
-          return new UnauthorizedException({
+          throw new UnauthorizedException({
             success: false,
             response: {
               success: false,
@@ -167,23 +169,26 @@ export class UsersController {
           });
         }
       } else {
-        return new UnauthorizedException({
+        throw new UnauthorizedException({
           success: false,
           response: {
             success: false,
-            message: 'Invalid email or license key',
+            message: 'Invalid email or license key with active subscription',
           },
         });
       }
     } catch (error) {
-      console.log(error);
-      throw new BadRequestException(
-        {
-          success: false,
-          response: { success: false, message: 'Unknown error' },
-        },
-        'Bad request',
-      );
+      if (error.response) {
+        throw new BadRequestException(error.response, 'Bad request');
+      } else {
+        throw new BadRequestException(
+          {
+            success: false,
+            response: { success: false, message: 'Unknown error' },
+          },
+          'Bad request',
+        );
+      }
     }
   }
 
@@ -221,7 +226,7 @@ export class UsersController {
                 response: subscription,
               };
             } else {
-              return new UnauthorizedException({
+              throw new UnauthorizedException({
                 success: false,
                 response: {
                   success: false,
@@ -230,7 +235,7 @@ export class UsersController {
               });
             }
           } else {
-            return new UnauthorizedException({
+            throw new UnauthorizedException({
               success: false,
               response: {
                 success: false,
@@ -239,7 +244,7 @@ export class UsersController {
             });
           }
         } else {
-          return new UnauthorizedException({
+          throw new UnauthorizedException({
             success: false,
             response: {
               success: false,
@@ -248,7 +253,7 @@ export class UsersController {
           });
         }
       } else {
-        return new UnauthorizedException({
+        throw new UnauthorizedException({
           success: false,
           response: {
             success: false,
@@ -257,17 +262,22 @@ export class UsersController {
         });
       }
     } catch (error) {
-      console.log(error);
-      throw new BadRequestException(
-        {
-          success: false,
-          response: { success: false, message: 'Unknown error' },
-        },
-        'Bad request',
-      );
+      if (error.response) {
+        throw new BadRequestException(error.response, 'Bad request');
+      } else {
+        throw new BadRequestException(
+          {
+            success: false,
+            response: { success: false, message: 'Unknown error' },
+          },
+          'Bad request',
+        );
+      }
     }
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Invalidate hardware ID' })
   @ApiResponse({
     status: 201,

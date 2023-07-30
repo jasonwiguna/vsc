@@ -6,6 +6,7 @@ import {
   BadRequestException,
   UnauthorizedException,
   Get,
+  UseGuards,
 } from '@nestjs/common';
 import {
   ApiBadRequestResponse,
@@ -20,6 +21,7 @@ import { ErrorResponse, SuccessfulResponse } from '../dto/responses.dto';
 import { PricingPackage } from '../entities/pricingPackage.schema';
 import { PricingPackagesService } from './pricingPackages.service';
 import { CreatePricingPackageDto } from './dto/createPricingPackage.dto';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller()
 export class PricingPackagesController {
@@ -52,6 +54,8 @@ export class PricingPackagesController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Add pricing package' })
   @ApiResponse({
     status: 201,

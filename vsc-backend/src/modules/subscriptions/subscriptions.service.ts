@@ -122,13 +122,23 @@ export class SubscriptionsService {
     const user = await this.userModel.findOne({
       where: { email: request.email },
     });
-    return this.subscriptionModel.findOne({
-      where: {
-        userId: user.id,
-        key: request.key.replace('-', '').toLowerCase(),
-        subscriptionDate: LessThanOrEqual(new Date()),
-        expirationDate: MoreThanOrEqual(new Date()),
-      },
-    });
+    if (user) {
+      return this.subscriptionModel.findOne({
+        where: {
+          userId: user.id,
+          key: request.key.replace('-', '').toLowerCase(),
+          subscriptionDate: LessThanOrEqual(new Date()),
+          expirationDate: MoreThanOrEqual(new Date()),
+        },
+      });
+    } else {
+      throw new BadRequestException(
+        {
+          success: false,
+          response: { success: false, message: 'User does not exist' },
+        },
+        'Bad request',
+      );
+    }
   }
 }
