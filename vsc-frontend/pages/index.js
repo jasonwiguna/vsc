@@ -81,6 +81,20 @@ export default function Home() {
   })
   const permission = <div>I agree to receive updates</div>
 
+  const projectsPath = [
+    ['/Images Carousell/VStream1.png','/Images Carousell/VStream2.png','/Images Carousell/VStream3.png'],
+    ['/Images Carousell/VStream4.jpg','/Images Carousell/VStream5.jpg','/Images Carousell/VStream6.jpg','/Images Carousell/VStream7.jpeg'],
+    ['/Images Carousell/VStream8.png','/Images Carousell/VStream9.png','/Images Carousell/VStream10.png'],
+    ['/Images Carousell/VStream11.jpeg','/Images Carousell/VStream12.png','/Images Carousell/VStream13.png','/Images Carousell/VStream14.jpg'],
+    ['/Images Carousell/VStream15.png','/Images Carousell/VStream16.png','/Images Carousell/VStream17.png'],
+    ['/Images Carousell/VStream18.jpg','/Images Carousell/VStream19.png','/Images Carousell/VStream20.png','/Images Carousell/VStream21.png'],
+    ['/Images Carousell/VStream22.png','/Images Carousell/VStream23.jpeg','/Images Carousell/VStream24.png'],
+    ['/Images Carousell/VStream25.png','/Images Carousell/VStream26.png','/Images Carousell/VStream27.png','/Images Carousell/VStream28.jpg'],
+    ['/Images Carousell/VStream29.png','/Images Carousell/VStream30.png','/Images Carousell/VStream31.jpg'],
+    ['/Images Carousell/VStream32.jpg','/Images Carousell/VStream33.jpg','/Images Carousell/VStream34.jpg','/Images Carousell/VStream35.jpg'],
+    ['/Images Carousell/VStream36.jpeg','/Images Carousell/VStream37.jpeg','/Images Carousell/VStream38.jpg']
+  ]
+
   const imagesPath1 = [
     '/Images Carousell/VStream1.png','/Images Carousell/VStream2.png','/Images Carousell/VStream3.png',
     '/Images Carousell/VStream4.jpg','/Images Carousell/VStream5.jpg','/Images Carousell/VStream6.jpg','/Images Carousell/VStream7.jpeg',
