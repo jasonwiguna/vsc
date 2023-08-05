@@ -23,7 +23,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.website.entrypoints=http"
       - "traefik.http.routers.website.rule=Host(`web.vstream.asia`)"
-      - "traefik.http.services.website.loadbalancer.server.port=8001"
     build:
       context: ./vsc-frontend
       dockerfile: website.dockerfile
@@ -47,7 +46,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.admin.entrypoints=http"
       - "traefik.http.routers.admin.rule=Host(`db.vstream.asia`) && (PathPrefix(`/admin`) || PathPrefix(`/_next`))"
-      - "traefik.http.services.admin.loadbalancer.server.port=8002"
     build:
       context: ./vsc-admin
       dockerfile: admin.dockerfile
@@ -71,7 +69,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.backend.entrypoints=http"
       - "traefik.http.routers.backend.rule=Host(`db.vstream.asia`) && PathPrefix(`/backend`)"
-      - "traefik.http.services.backend.loadbalancer.server.port=8002"
     build:
       context: ./vsc-backend
       dockerfile: backend.dockerfile
@@ -102,7 +99,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data-vsc
+      - ./postgres-data:/var/lib/postgresql/data
     networks:
       - onebox-network
 networks:
