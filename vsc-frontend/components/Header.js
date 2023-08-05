@@ -47,7 +47,7 @@ function Header() {
   };
 
   return (
-    <AppBar position="fixed" color="transparent">
+    <AppBar position="fixed" sx={{ backgroundColor: "#4e4b4c69" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <img src='/LOGO/VSTREAM LOGO/VStreamLOGO_Circle.png' style={{maxWidth:"40px"}}/>
