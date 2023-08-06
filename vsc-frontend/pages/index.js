@@ -82,41 +82,68 @@ export default function Home() {
   const permission = <div>I agree to receive updates</div>
 
   const projectsPath = [
-    ['/Images Carousell/VStream1.png','/Images Carousell/VStream2.png','/Images Carousell/VStream3.png'],
-    ['/Images Carousell/VStream4.jpg','/Images Carousell/VStream5.jpg','/Images Carousell/VStream6.jpg','/Images Carousell/VStream7.jpeg'],
-    ['/Images Carousell/VStream8.png','/Images Carousell/VStream9.png','/Images Carousell/VStream10.png'],
-    ['/Images Carousell/VStream11.jpeg','/Images Carousell/VStream12.png','/Images Carousell/VStream13.png','/Images Carousell/VStream14.jpg'],
-    ['/Images Carousell/VStream15.png','/Images Carousell/VStream16.png','/Images Carousell/VStream17.png'],
-    ['/Images Carousell/VStream18.jpg','/Images Carousell/VStream19.png','/Images Carousell/VStream20.png','/Images Carousell/VStream21.png'],
-    ['/Images Carousell/VStream22.png','/Images Carousell/VStream23.jpeg','/Images Carousell/VStream24.png'],
-    ['/Images Carousell/VStream25.png','/Images Carousell/VStream26.png','/Images Carousell/VStream27.png','/Images Carousell/VStream28.jpg'],
-    ['/Images Carousell/VStream29.png','/Images Carousell/VStream30.png','/Images Carousell/VStream31.jpg'],
-    ['/Images Carousell/VStream32.jpg','/Images Carousell/VStream33.jpg','/Images Carousell/VStream34.jpg','/Images Carousell/VStream35.jpg'],
-    ['/Images Carousell/VStream36.jpeg','/Images Carousell/VStream37.jpeg','/Images Carousell/VStream38.jpg']
+    ['/Images_Carousell/VStream1.png','/Images_Carousell/VStream2.png','/Images_Carousell/VStream3.png'],
+    ['/Images_Carousell/VStream4.jpg','/Images_Carousell/VStream5.jpg','/Images_Carousell/VStream6.jpg','/Images_Carousell/VStream7.jpeg'],
+    ['/Images_Carousell/VStream8.png','/Images_Carousell/VStream9.png','/Images_Carousell/VStream10.png'],
+    ['/Images_Carousell/VStream11.jpeg','/Images_Carousell/VStream12.png','/Images_Carousell/VStream13.png','/Images_Carousell/VStream14.jpg'],
+    ['/Images_Carousell/VStream15.png','/Images_Carousell/VStream16.png','/Images_Carousell/VStream17.png'],
+    ['/Images_Carousell/VStream18.jpg','/Images_Carousell/VStream19.png','/Images_Carousell/VStream20.png','/Images_Carousell/VStream21.png'],
+    ['/Images_Carousell/VStream22.png','/Images_Carousell/VStream23.jpeg','/Images_Carousell/VStream24.png'],
+    ['/Images_Carousell/VStream25.png','/Images_Carousell/VStream26.png','/Images_Carousell/VStream27.png','/Images_Carousell/VStream28.jpg'],
+    ['/Images_Carousell/VStream29.png','/Images_Carousell/VStream30.png','/Images_Carousell/VStream31.jpg'],
+    ['/Images_Carousell/VStream32.jpg','/Images_Carousell/VStream33.jpg','/Images_Carousell/VStream34.jpg','/Images_Carousell/VStream35.jpg'],
+    ['/Images_Carousell/VStream36.jpeg','/Images_Carousell/VStream37.jpeg','/Images_Carousell/VStream38.jpg']
+  ]
+
+  const imagesPath = [
+    '/Images_Carousell/VStream1.png','/Images_Carousell/VStream2.png','/Images_Carousell/VStream3.png',
+    '/Images_Carousell/VStream4.jpg','/Images_Carousell/VStream5.jpg','/Images_Carousell/VStream6.jpg','/Images_Carousell/VStream7.jpeg',
+    '/Images_Carousell/VStream8.png','/Images_Carousell/VStream9.png','/Images_Carousell/VStream10.png',
+    '/Images_Carousell/VStream11.jpeg','/Images_Carousell/VStream12.png','/Images_Carousell/VStream13.png','/Images_Carousell/VStream14.jpg',
+    '/Images_Carousell/VStream15.png','/Images_Carousell/VStream16.png','/Images_Carousell/VStream17.png',
+    '/Images_Carousell/VStream18.jpg','/Images_Carousell/VStream19.png',
+    '/Images_Carousell/VStream20.png','/Images_Carousell/VStream21.png',
+    '/Images_Carousell/VStream22.png','/Images_Carousell/VStream23.jpeg','/Images_Carousell/VStream24.png',
+    '/Images_Carousell/VStream25.png','/Images_Carousell/VStream26.png','/Images_Carousell/VStream27.png','/Images_Carousell/VStream28.jpg',
+    '/Images_Carousell/VStream29.png','/Images_Carousell/VStream30.png','/Images_Carousell/VStream31.jpg',
+    '/Images_Carousell/VStream32.jpg','/Images_Carousell/VStream33.jpg','/Images_Carousell/VStream34.jpg','/Images_Carousell/VStream35.jpg',
+    '/Images_Carousell/VStream36.jpeg','/Images_Carousell/VStream37.jpeg','/Images_Carousell/VStream38.jpg',
   ]
 
   const imagesPath1 = [
-    '/Images Carousell/VStream1.png','/Images Carousell/VStream2.png','/Images Carousell/VStream3.png',
-    '/Images Carousell/VStream4.jpg','/Images Carousell/VStream5.jpg','/Images Carousell/VStream6.jpg','/Images Carousell/VStream7.jpeg',
-    '/Images Carousell/VStream8.png','/Images Carousell/VStream9.png','/Images Carousell/VStream10.png',
-    '/Images Carousell/VStream11.jpeg','/Images Carousell/VStream12.png','/Images Carousell/VStream13.png','/Images Carousell/VStream14.jpg',
-    '/Images Carousell/VStream15.png','/Images Carousell/VStream16.png','/Images Carousell/VStream17.png',
-    '/Images Carousell/VStream18.jpg','/Images Carousell/VStream19.png',
-    '/Images Carousell/VStream1.png','/Images Carousell/VStream2.png','/Images Carousell/VStream3.png',
-    '/Images Carousell/VStream4.jpg','/Images Carousell/VStream5.jpg','/Images Carousell/VStream6.jpg','/Images Carousell/VStream7.jpeg'
+    '/Images_Carousell/VStream1.png','/Images_Carousell/VStream2.png','/Images_Carousell/VStream3.png',
+    '/Images_Carousell/VStream4.jpg','/Images_Carousell/VStream5.jpg','/Images_Carousell/VStream6.jpg','/Images_Carousell/VStream7.jpeg',
+    '/Images_Carousell/VStream8.png','/Images_Carousell/VStream9.png','/Images_Carousell/VStream10.png',
+    '/Images_Carousell/VStream11.jpeg','/Images_Carousell/VStream12.png','/Images_Carousell/VStream13.png','/Images_Carousell/VStream14.jpg',
+    '/Images_Carousell/VStream15.png','/Images_Carousell/VStream16.png','/Images_Carousell/VStream17.png',
+    '/Images_Carousell/VStream18.jpg','/Images_Carousell/VStream19.png',
+    '/Images_Carousell/VStream1.png','/Images_Carousell/VStream2.png','/Images_Carousell/VStream3.png',
+    '/Images_Carousell/VStream4.jpg','/Images_Carousell/VStream5.jpg','/Images_Carousell/VStream6.jpg','/Images_Carousell/VStream7.jpeg'
   ]
 
   const imagesPath2 = [
-    '/Images Carousell/VStream20.png','/Images Carousell/VStream21.png',
-    '/Images Carousell/VStream22.png','/Images Carousell/VStream23.jpeg','/Images Carousell/VStream24.png',
-    '/Images Carousell/VStream25.png','/Images Carousell/VStream26.png','/Images Carousell/VStream27.png','/Images Carousell/VStream28.jpg',
-    '/Images Carousell/VStream29.png','/Images Carousell/VStream30.png','/Images Carousell/VStream31.jpg',
-    '/Images Carousell/VStream32.jpg','/Images Carousell/VStream33.jpg','/Images Carousell/VStream34.jpg','/Images Carousell/VStream35.jpg',
-    '/Images Carousell/VStream36.jpeg','/Images Carousell/VStream37.jpeg','/Images Carousell/VStream38.jpg',
-    '/Images Carousell/VStream20.png','/Images Carousell/VStream21.png',
-    '/Images Carousell/VStream22.png','/Images Carousell/VStream23.jpeg','/Images Carousell/VStream24.png',
-    '/Images Carousell/VStream25.png','/Images Carousell/VStream26.png'
+    '/Images_Carousell/VStream20.png','/Images_Carousell/VStream21.png',
+    '/Images_Carousell/VStream22.png','/Images_Carousell/VStream23.jpeg','/Images_Carousell/VStream24.png',
+    '/Images_Carousell/VStream25.png','/Images_Carousell/VStream26.png','/Images_Carousell/VStream27.png','/Images_Carousell/VStream28.jpg',
+    '/Images_Carousell/VStream29.png','/Images_Carousell/VStream30.png','/Images_Carousell/VStream31.jpg',
+    '/Images_Carousell/VStream32.jpg','/Images_Carousell/VStream33.jpg','/Images_Carousell/VStream34.jpg','/Images_Carousell/VStream35.jpg',
+    '/Images_Carousell/VStream36.jpeg','/Images_Carousell/VStream37.jpeg','/Images_Carousell/VStream38.jpg',
+    '/Images_Carousell/VStream20.png','/Images_Carousell/VStream21.png',
+    '/Images_Carousell/VStream22.png','/Images_Carousell/VStream23.jpeg','/Images_Carousell/VStream24.png',
+    '/Images_Carousell/VStream25.png','/Images_Carousell/VStream26.png'
   ]
+
+  const [isPaused1, setIsPaused1] = useState(false);
+  const [isPaused2, setIsPaused2] = useState(false);
+  const [imgidx, setImgIdx] = useState(0);
+  const [isOpenImg, setIsOpenImg] = useState(false)
+
+  function handleOpenImg() {
+    setIsOpenImg(true)
+  }
+  function handleCloseImg() {
+    setIsOpenImg(false)
+  }
   
   return (
     <div className={styles.container}>
@@ -209,16 +236,41 @@ export default function Home() {
             <div className={styles.jacksonville_font}>
               OUR PAST PROJECTS
             </div>
-            <div className={styles.filmstrip}>
+            <div className={`${styles.filmstrip} ${isPaused1 ? styles.paused : ''}`}
+              onMouseEnter={() => setIsPaused1(true)}
+              onMouseLeave={() => setIsPaused1(false)}
+            >
               {imagesPath1.map((image, index) => (
-                <img key={index} src={image} alt={`Image ${index + 1}`} />
+                <img onClick={() => {
+                  setImgIdx(index)
+                  setIsOpenImg(true)
+                }} key={index} src={image} alt={`Image ${index + 1}`} />
               ))}
             </div>
-            <div className={styles.filmstrip_reverse}>
+            <div className={`${styles.filmstrip_reverse} ${isPaused2 ? styles.paused : ''}`}
+              onMouseEnter={() => setIsPaused2(true)}
+              onMouseLeave={() => setIsPaused2(false)}
+            >
               {imagesPath2.map((image, index) => (
-                <img key={index} src={image} alt={`Image ${index + 1}`} />
+                <img onClick={() => {
+                  setImgIdx(index + 19)
+                  setIsOpenImg(true)
+                }} key={index} src={image} alt={`Image ${index + 1}`} />
               ))}
             </div>
+            <Modal show={isOpenImg} onHide={handleCloseImg} size='lg' centered>
+              <Modal.Body className={styles.modal}>
+                <div className={styles.modalContainerImg}>
+                  <button disabled={imgidx == 0} onClick={() => setImgIdx(Math.max(imgidx - 1, 0))} style={{background: "transparent", border: "0px solid black"}}>
+                    <img className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto", opacity: imgidx == 0 ? '30%' : '100%'}}/>
+                  </button>
+                  <img style={{ maxWidth: '80%' }} src={imagesPath[imgidx]} alt={`Image`} />
+                  <button disabled={imgidx == imagesPath.length - 1} onClick={() => setImgIdx(Math.min(imgidx + 1, imagesPath.length - 1))} style={{background: "transparent", border: "0px solid black"}}>
+                    <img src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto", opacity: imgidx == imagesPath.length - 1 ? '30%' : '100%'}}/>
+                  </button>
+                </div>
+              </Modal.Body>
+            </Modal>
           </h1>
           <h1 className={styles.content_header_mobile}>
             <div className={styles.jacksonville_font}>
