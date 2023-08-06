@@ -1,6 +1,6 @@
 @font-face {
   font-family: jacksonvilleFont;
-  src: url('/FONT/NFL_Jacksonville_Jaguars[1].ttf');
+  src: url('/FONT/NFL_Jacksonville_Jaguars.ttf');
 }
 
 @font-face {
@@ -9,6 +9,7 @@
 }
 
 .filmstrip {
+  cursor: pointer;
   display: flex;
   overflow: hidden;
   width: 100%;
@@ -33,6 +34,7 @@
 }
 
 .filmstrip_reverse {
+  cursor: pointer;
   display: flex;
   overflow: hidden;
   width: 100%;
@@ -44,6 +46,10 @@
   height: 100%;
   object-fit: cover;
   animation: scrollFilmstripReverse 50s linear infinite; /* Adjust animation duration as needed */
+}
+
+.paused img {
+  animation-play-state: paused;
 }
 
 @keyframes scrollFilmstripReverse {
@@ -490,6 +496,17 @@
 .modalContainer {
   text-align: center;
   margin: 0px 10%;
+
+  @media only screen and (max-width: 767px) {
+    margin: 0px 10px;
+  }
+}
+
+.modalContainerImg {
+  text-align: center;
+  margin: 0px 10%;
+  display: flex;
+  flex-direction: row;
 
   @media only screen and (max-width: 767px) {
     margin: 0px 10px;
