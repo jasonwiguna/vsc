@@ -9,6 +9,7 @@ import { CreateSubscriptionDto } from './dto/createSubscription.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   IsNull,
+  LessThan,
   LessThanOrEqual,
   MoreThanOrEqual,
   Not,
@@ -57,7 +58,7 @@ export class SubscriptionsService {
       where: {
         suspended: false,
         subscriptionDate: LessThanOrEqual(new Date()),
-        expirationDate: MoreThanOrEqual(new Date()),
+        expirationDate: Not(LessThan(new Date())),
         user: { hid: Not(IsNull()) },
       },
       relations: ['user', 'pricingPackage'],
@@ -132,7 +133,7 @@ export class SubscriptionsService {
           userId: user.id,
           key: request.key.replace('-', '').toLowerCase(),
           subscriptionDate: LessThanOrEqual(new Date()),
-          expirationDate: MoreThanOrEqual(new Date()),
+          expirationDate: Not(LessThan(new Date())),
         },
       });
     } else {

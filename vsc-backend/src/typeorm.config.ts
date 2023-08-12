@@ -4,6 +4,7 @@ import { config } from 'dotenv';
 import entities from 'src/modules/entities/index';
 import { CreateTables1686219818833 } from 'src/migrations/1686219818833-CreateTables';
 import { CreateTableAuthentication1690479228870 } from 'src/migrations/1690479228870-CreateTableAuthentication';
+import { AddPerpetualPrice1691828853404 } from './migrations/1691828853404-AddPerpetualPrice';
 
 config();
 
@@ -20,5 +21,6 @@ export default new DataSource({
   migrations: [
     CreateTables1686219818833,
     CreateTableAuthentication1690479228870,
+    AddPerpetualPrice1691828853404,
   ],
 });
