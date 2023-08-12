@@ -127,7 +127,7 @@ export class SubscriptionsController {
       const subscription = {
         userId: user.id,
         pricingPackageId: request.pricingPackageId,
-        monthly: request.monthly,
+        paymentPlan: request.paymentPlan,
         key: crypto.randomBytes(16).toString('hex').toLocaleLowerCase(),
         subscriptionDate: request.subscriptionDate,
         expirationDate: request.expirationDate,
@@ -175,7 +175,7 @@ export class SubscriptionsController {
           userId: user.id,
           pricingPackageId: request.pricingPackageId,
           key: request.key,
-          monthly: request.monthly,
+          paymentPlan: request.paymentPlan,
           subscriptionDate: request.subscriptionDate,
           expirationDate: request.expirationDate,
         };

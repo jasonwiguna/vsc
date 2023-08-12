@@ -9,6 +9,18 @@ export function fetchPricing() {
 
 export function addPricing(values) {
   return backendAxiosInstance
-    .post(`/backend/pricing/add`, values)
+    .post(`/backend/pricing`, values)
+    .then((res) => res.data)
+}
+
+export function editPricing(values) {
+  return backendAxiosInstance
+    .put(`/backend/pricing`, values)
+    .then((res) => res.data)
+}
+
+export function deletePricing(values) {
+  return backendAxiosInstance
+    .delete(`/backend/pricing`, values)
     .then((res) => res.data)
 }

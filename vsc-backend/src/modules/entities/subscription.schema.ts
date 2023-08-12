@@ -51,11 +51,11 @@ export class Subscription {
 
   @Column({ type: 'boolean' })
   @ApiProperty({
-    type: Boolean,
-    description: 'Monthly',
-    example: true,
+    type: String,
+    description: 'Package Payment',
+    example: 'MONTHLY',
   })
-  monthly!: boolean;
+  paymentPlan!: string;
 
   @Column({ type: 'boolean' })
   @ApiProperty({

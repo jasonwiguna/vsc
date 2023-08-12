@@ -71,7 +71,10 @@ export class SubscriptionsService {
    * @returns {Subscription}
    */
   async findOneByUserId(userId: string): Promise<Subscription | undefined> {
-    return this.subscriptionModel.findOne({ where: { userId: userId } });
+    return this.subscriptionModel.findOne({
+      relations: ['pricingPackage'],
+      where: { userId: userId },
+    });
   }
 
   /**
@@ -124,6 +127,7 @@ export class SubscriptionsService {
     });
     if (user) {
       return this.subscriptionModel.findOne({
+        relations: ['pricingPackage'],
         where: {
           userId: user.id,
           key: request.key.replace('-', '').toLowerCase(),

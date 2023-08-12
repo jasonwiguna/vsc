@@ -2,13 +2,11 @@ import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, styled, tableCellClasses } from '@mui/material';
 import { useMutation, useQuery } from 'react-query';
-import { addPricing, fetchPricing } from '../../services/pricingService';
+import { deletePricing, fetchPricing } from '../../services/pricingService';
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-import { Formik, Form as FormikForm } from 'formik'
-import * as Yup from 'yup'
-import { Row, Col, Form } from 'react-bootstrap'
-import { MyTextInput } from '../../components/MyInput';
+import AddPricingPackage from '../../components/AddPricingPackage';
+import EditPricingPackage from '../../components/EditPricingPackage';
 
 const statusMap = {
   ERROR: 'ERROR',
@@ -35,24 +33,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const paramMap = {
-  packageName: 'packageName',
-  monthlyPrice: 'monthlyPrice',
-  annualPrice: 'annualPrice',
-}
-
-const validationSchema = Yup.object({
-  [paramMap.packageName]: Yup.string().required(),
-  [paramMap.monthlyPrice]: Yup.number().required(),
-  [paramMap.annualPrice]: Yup.number().required(),
-})
-
-const initialValues = {
-  packageName: '',
-  monthlyPrice: 0,
-  annualPrice: 0,
-}
-
 export default function Packages() {
   const { status, data, refetch } = useQuery(
     ['pricing'], () => fetchPricing()
@@ -66,13 +46,15 @@ export default function Packages() {
   function handleClose() {
     setIsOpen(false)
   }
+
+  const [pricingPackage, setPricingPackage] = useState(null)
+  const [action, setAction] = useState('ADD')
   
   const [submissionStatus, setSubmissionStatus] = useState(null)
 
-  const { mutate, error } = useMutation(addPricing, {
+  const { mutate } = useMutation(deletePricing, {
     onSuccess: () => {
       setSubmissionStatus(statusMap.SUCCESS)
-      handleClose()
       refetch()
     },
     onError: () => setSubmissionStatus(statusMap.ERROR),
@@ -92,79 +74,42 @@ export default function Packages() {
               <StyledTableCell>Package Name</StyledTableCell>
               <StyledTableCell align="right">Monthly Price</StyledTableCell>
               <StyledTableCell align="right">Yearly Price</StyledTableCell>
+              <StyledTableCell align="right">Perpetual Price</StyledTableCell>
+              <StyledTableCell align="right">Action</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data?.map((row) => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row">
-                  {row.packageName}
+                  <a onClick={() => {
+                    setAction('EDIT')
+                    setPricingPackage(row)
+                    handleOpen()
+                  }} style={{ cursor: 'pointer' }}>{row.packageName}</a>
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.monthlyPrice}</StyledTableCell>
-                <StyledTableCell align="right">{row.annualPrice}</StyledTableCell>
+                <StyledTableCell align="right">${row.monthlyPrice}</StyledTableCell>
+                <StyledTableCell align="right">${row.annualPrice}</StyledTableCell>
+                <StyledTableCell align="right">${row.perpetualPrice}</StyledTableCell>
+                <StyledTableCell align="right"><a onClick={() => mutate({ id: row.id })} style={{ cursor: 'pointer' }}>Remove</a></StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
 
-      <a onClick={handleOpen} style={{ cursor: 'pointer' }}>Add</a>
+      <a onClick={() => {
+        setAction('ADD')
+        handleOpen()
+      }} style={{ cursor: 'pointer' }}>Add</a>
 
       <Modal show={isOpen} onHide={handleClose} size='sm' centered>
         <Modal.Body className={styles.modal}>
           <div className={styles.modalContainer}>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={validationSchema}
-            onSubmit={(values) => {
-              mutate(values)
-            }}
-          >
-            {(values) => <FormikForm>
-              <Row className="mt-2">
-                <div>
-                  <Form.Row>
-                    <Col md={8} className="pl-3">
-                      {/* Package Name */}
-                      <MyTextInput
-                        label="Package Name"
-                        id="packageName"
-                        name={paramMap.packageName}
-                        placeholder="Basic"
-                        required
-                        className="mb-3"
-                      />
-
-                      {/* Monthly Price */}
-                      <MyTextInput
-                        label="Monthly Price"
-                        id="monthlyPrice"
-                        name={paramMap.monthlyPrice}
-                        placeholder="5"
-                        required
-                        className="mb-3"
-                      />
-
-                      {/* Annual Price */}
-                      <MyTextInput
-                        label="Annual Price"
-                        id="annualPrice"
-                        name={paramMap.annualPrice}
-                        placeholder="50"
-                        required
-                        className="mb-3"
-                      />
-                    </Col>
-                  </Form.Row>
-                </div>
-              </Row>
-
-              <div className='d-flex flex-row mb-3'>
-                <button onClick={() => handleClose()}>Cancel</button>
-                <button disabled={values.isSubmitting} type='submit'>Submit</button>
-              </div>
-            </FormikForm>}
-          </Formik>
+            {action == 'ADD' ?
+              <AddPricingPackage handleClose={handleClose} refetch={refetch} setSubmissionStatus={setSubmissionStatus} /> :
+              <EditPricingPackage handleClose={handleClose} refetch={refetch} setSubmissionStatus={setSubmissionStatus} pricingPackage={pricingPackage} />
+            }
           </div>
         </Modal.Body>
       </Modal>

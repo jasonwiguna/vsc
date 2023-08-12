@@ -45,7 +45,7 @@ const paramMap = {
   country: 'country',
   updatePermission: 'updatePermission',
   pricingPackageId: 'pricingPackageId',
-  monthly: 'monthly',
+  paymentPlan: 'paymentPlan',
   subscriptionDate: 'subscriptionDate',
   expirationDate: 'expirationDate',
 }
@@ -59,7 +59,7 @@ const validationSchema = Yup.object({
   [paramMap.country]: Yup.string().required(),
   [paramMap.updatePermission]: Yup.boolean().required(),
   [paramMap.pricingPackageId]: Yup.string().required(),
-  [paramMap.monthly]: Yup.boolean().required(),
+  [paramMap.paymentPlan]: Yup.string().required(),
   [paramMap.subscriptionDate]: Yup.string().required(),
   [paramMap.expirationDate]: Yup.string().required(),
 })
@@ -73,7 +73,7 @@ const initialValues = {
   country: '',
   updatePermission: false,
   pricingPackageId: '',
-  monthly: true,
+  paymentPlan: 'PERPETUAL',
   subscriptionDate: new Date(),
   expirationDate: new Date(new Date().setMonth(new Date().getMonth()+1)),
 }
@@ -245,7 +245,7 @@ export default function Subscriptions() {
                         {statusPricing === 'success' &&
                           dataPricing.map((pricing) => (
                             <option key={pricing.id} value={pricing.id}>
-                              {pricing.packageName} for ${pricing.monthlyPrice} per month
+                              {pricing.packageName} for ${pricing.perpetualPrice}
                             </option>
                           ))}
                       </MySelect>

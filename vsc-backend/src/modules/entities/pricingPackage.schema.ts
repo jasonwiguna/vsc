@@ -48,6 +48,14 @@ export class PricingPackage {
   })
   annualPrice!: number;
 
+  @Column({ type: 'float' })
+  @ApiProperty({
+    type: Number,
+    description: 'Perpetual Price',
+    example: 100,
+  })
+  perpetualPrice!: number;
+
   @BeforeInsert()
   addId(): void {
     this.id = v4();

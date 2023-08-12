@@ -157,7 +157,10 @@ export class UsersController {
         if (request.hid) {
           return {
             success: true,
-            response: this.usersService.updateHardwareId(request),
+            response: {
+              package: result.pricingPackage,
+              user: await this.usersService.updateHardwareId(request),
+            },
           };
         } else {
           throw new UnauthorizedException({

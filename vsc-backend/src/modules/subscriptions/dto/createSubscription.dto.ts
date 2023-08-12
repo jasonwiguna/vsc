@@ -31,11 +31,11 @@ export class CreateSubscriptionDto {
   @IsBoolean()
   @IsNotEmpty()
   @ApiProperty({
-    type: Boolean,
-    description: 'Monthly',
-    example: true,
+    type: String,
+    description: 'Package Payment',
+    example: 'MONTHLY',
   })
-  monthly: boolean;
+  paymentPlan: string;
 
   @IsDate()
   @IsNotEmpty()
@@ -135,11 +135,11 @@ export class CreateSubscriptionRequestDto {
   @IsBoolean()
   @IsNotEmpty()
   @ApiProperty({
-    type: Boolean,
-    description: 'Monthly',
-    example: true,
+    type: String,
+    description: 'Package Payment',
+    example: 'MONTHLY',
   })
-  monthly: boolean;
+  paymentPlan: string;
 
   @IsDate()
   @IsNotEmpty()
@@ -191,11 +191,11 @@ export class RenewSubscriptionDto {
   @IsBoolean()
   @IsNotEmpty()
   @ApiProperty({
-    type: Boolean,
-    description: 'Monthly',
-    example: true,
+    type: String,
+    description: 'Package Payment',
+    example: 'MONTHLY',
   })
-  monthly: boolean;
+  paymentPlan: string;
 
   @IsDate()
   @IsNotEmpty()
