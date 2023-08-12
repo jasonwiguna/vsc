@@ -55,12 +55,20 @@ export class SubscriptionsService {
    */
   async findAllActive(): Promise<Subscription[]> {
     return this.subscriptionModel.find({
-      where: {
-        suspended: false,
-        subscriptionDate: LessThanOrEqual(new Date()),
-        expirationDate: Not(LessThan(new Date())),
-        user: { hid: Not(IsNull()) },
-      },
+      where: [
+        {
+          suspended: false,
+          subscriptionDate: LessThanOrEqual(new Date()),
+          expirationDate: MoreThanOrEqual(new Date()),
+          user: { hid: Not(IsNull()) },
+        },
+        {
+          suspended: false,
+          subscriptionDate: LessThanOrEqual(new Date()),
+          expirationDate: IsNull(),
+          user: { hid: Not(IsNull()) },
+        },
+      ],
       relations: ['user', 'pricingPackage'],
     });
   }
@@ -129,12 +137,20 @@ export class SubscriptionsService {
     if (user) {
       return this.subscriptionModel.findOne({
         relations: ['pricingPackage'],
-        where: {
-          userId: user.id,
-          key: request.key.replace('-', '').toLowerCase(),
-          subscriptionDate: LessThanOrEqual(new Date()),
-          expirationDate: Not(LessThan(new Date())),
-        },
+        where: [
+          {
+            userId: user.id,
+            key: request.key.replace('-', '').toLowerCase(),
+            subscriptionDate: LessThanOrEqual(new Date()),
+            expirationDate: MoreThanOrEqual(new Date()),
+          },
+          {
+            userId: user.id,
+            key: request.key.replace('-', '').toLowerCase(),
+            subscriptionDate: LessThanOrEqual(new Date()),
+            expirationDate: IsNull(),
+          },
+        ],
       });
     } else {
       throw new BadRequestException(

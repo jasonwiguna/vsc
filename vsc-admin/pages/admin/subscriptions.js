@@ -61,7 +61,7 @@ const validationSchema = Yup.object({
   [paramMap.pricingPackageId]: Yup.string().required(),
   [paramMap.paymentPlan]: Yup.string().required(),
   [paramMap.subscriptionDate]: Yup.string().required(),
-  [paramMap.expirationDate]: Yup.string(),
+  [paramMap.expirationDate]: Yup.string().nullable(),
 })
 
 const initialValues = {

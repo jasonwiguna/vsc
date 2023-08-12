@@ -223,7 +223,10 @@ export class UsersController {
             user.id,
           );
           if (subscription) {
-            if (!(subscription.expirationDate < new Date())) {
+            if (
+              subscription.expirationDate > new Date() ||
+              subscription.expirationDate == null
+            ) {
               return {
                 success: true,
                 response: subscription,
