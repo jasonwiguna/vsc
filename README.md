@@ -12,4 +12,7 @@ make up
 
 # Build app
 make build
+
+# Rebuild individual container (run app again after building)
+docker-compose build {container-name}
 ```
