@@ -83,6 +83,7 @@ export default function Packages() {
               <StyledTableCell align="right">Monthly Price</StyledTableCell>
               <StyledTableCell align="right">Yearly Price</StyledTableCell>
               <StyledTableCell align="right">Perpetual Price</StyledTableCell>
+              <StyledTableCell align="right">Status</StyledTableCell>
               <StyledTableCell align="right">Action</StyledTableCell>
             </TableRow>
           </TableHead>
@@ -99,6 +100,7 @@ export default function Packages() {
                 <StyledTableCell align="right">${row.monthlyPrice}</StyledTableCell>
                 <StyledTableCell align="right">${row.annualPrice}</StyledTableCell>
                 <StyledTableCell align="right">${row.perpetualPrice}</StyledTableCell>
+                <StyledTableCell align="right">{row.active ? 'ACTIVE' : 'INACTIVE'}</StyledTableCell>
                 <StyledTableCell align="right">{row.active ? <a onClick={() => mutate({ id: row.id })} style={{ cursor: 'pointer' }}>Remove</a> : <a onClick={() => activate({ id: row.id })} style={{ cursor: 'pointer' }}>Activate</a>}</StyledTableCell>
               </StyledTableRow>
             ))}
