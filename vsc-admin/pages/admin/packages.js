@@ -2,7 +2,7 @@ import Head from 'next/head';
 import styles from '../../styles/Home.module.css';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel, styled, tableCellClasses } from '@mui/material';
 import { useMutation, useQuery } from 'react-query';
-import { deletePricing, fetchPricing } from '../../services/pricingService';
+import { activatePricing, deletePricing, fetchPricing } from '../../services/pricingService';
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
 import AddPricingPackage from '../../components/AddPricingPackage';
@@ -60,6 +60,14 @@ export default function Packages() {
     onError: () => setSubmissionStatus(statusMap.ERROR),
   })
 
+  const { mutate: activate } = useMutation(activatePricing, {
+    onSuccess: () => {
+      setSubmissionStatus(statusMap.SUCCESS)
+      refetch()
+    },
+    onError: () => setSubmissionStatus(statusMap.ERROR),
+  })
+
   return (
     <div className={styles.container}>
       <Head>
@@ -91,7 +99,7 @@ export default function Packages() {
                 <StyledTableCell align="right">${row.monthlyPrice}</StyledTableCell>
                 <StyledTableCell align="right">${row.annualPrice}</StyledTableCell>
                 <StyledTableCell align="right">${row.perpetualPrice}</StyledTableCell>
-                <StyledTableCell align="right"><a onClick={() => mutate({ id: row.id })} style={{ cursor: 'pointer' }}>Remove</a></StyledTableCell>
+                <StyledTableCell align="right">{row.active ? <a onClick={() => mutate({ id: row.id })} style={{ cursor: 'pointer' }}>Remove</a> : <a onClick={() => activate({ id: row.id })} style={{ cursor: 'pointer' }}>Activate</a>}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>

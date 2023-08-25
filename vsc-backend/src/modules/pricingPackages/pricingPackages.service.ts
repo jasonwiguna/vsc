@@ -52,11 +52,34 @@ export class PricingPackagesService {
     deletePricingPackageDto: DeletePricingPackageDto,
   ): Promise<PricingPackage> {
     try {
-      const pricingPackage = await this.pricingPackageModel.findOne({
+      await this.pricingPackageModel.update(
+        {
+          id: deletePricingPackageDto.id,
+        },
+        { active: false },
+      );
+      return await this.pricingPackageModel.findOne({
         where: { id: deletePricingPackageDto.id },
       });
-      await this.pricingPackageModel.remove(pricingPackage);
-      return pricingPackage;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
+
+  async activate(
+    deletePricingPackageDto: DeletePricingPackageDto,
+  ): Promise<PricingPackage> {
+    try {
+      await this.pricingPackageModel.update(
+        {
+          id: deletePricingPackageDto.id,
+        },
+        { active: true },
+      );
+      return await this.pricingPackageModel.findOne({
+        where: { id: deletePricingPackageDto.id },
+      });
     } catch (error) {
       console.log(error);
       throw error;
@@ -70,6 +93,18 @@ export class PricingPackagesService {
    */
   async findAll(): Promise<PricingPackage[]> {
     return this.pricingPackageModel.find({
+      order: { packageName: 'ASC' },
+    });
+  }
+
+  /**
+   * Get active Pricing Package.
+   *
+   * @returns {PricingPackage[]}
+   */
+  async findActive(): Promise<PricingPackage[]> {
+    return this.pricingPackageModel.find({
+      where: { active: true },
       order: { packageName: 'ASC' },
     });
   }

@@ -31,7 +31,34 @@ import { DeletePricingPackageDto } from './dto/deletePricingPackage.dto';
 export class PricingPackagesController {
   constructor(private pricingPackageService: PricingPackagesService) {}
 
-  @ApiOperation({ summary: 'Get Pricing Packages' })
+  @ApiOperation({ summary: 'Get All Pricing Packages' })
+  @ApiResponse({
+    status: 200,
+    schema: {
+      $ref: getSchemaPath(PricingPackage),
+    },
+  })
+  @ApiBadRequestResponse({
+    status: 400,
+    description: 'Bad Request',
+    type: () => ErrorResponse,
+  })
+  @Get('/pricing/all')
+  async getAllPricingPackages() {
+    try {
+      return await this.pricingPackageService.findAll();
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(
+        {
+          error: { success: false, message: 'Unknown error' },
+        },
+        'Bad request',
+      );
+    }
+  }
+
+  @ApiOperation({ summary: 'Get Active Pricing Packages' })
   @ApiResponse({
     status: 200,
     schema: {
@@ -46,7 +73,7 @@ export class PricingPackagesController {
   @Get('/pricing')
   async getPricingPackages() {
     try {
-      return await this.pricingPackageService.findAll();
+      return await this.pricingPackageService.findActive();
     } catch (error) {
       console.log(error);
       throw new BadRequestException(
@@ -120,7 +147,7 @@ export class PricingPackagesController {
 
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Delete pricing package' })
+  @ApiOperation({ summary: 'Make pricing package inactive' })
   @ApiResponse({
     status: 201,
     description: 'Successful Response',
@@ -133,10 +160,40 @@ export class PricingPackagesController {
     description: 'Bad Request',
     type: () => ErrorResponse,
   })
-  @Delete('/pricing')
+  @Post('/pricing/delete')
   async deletePricingPackage(@Body() request: DeletePricingPackageDto) {
     try {
       return this.pricingPackageService.delete(request);
+    } catch (error) {
+      console.log(error);
+      throw new BadRequestException(
+        {
+          error: { success: false, message: 'Unknown error' },
+        },
+        'Bad request',
+      );
+    }
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Activate pricing package' })
+  @ApiResponse({
+    status: 201,
+    description: 'Successful Response',
+    schema: {
+      $ref: getSchemaPath(PricingPackage),
+    },
+  })
+  @ApiBadRequestResponse({
+    status: 400,
+    description: 'Bad Request',
+    type: () => ErrorResponse,
+  })
+  @Post('/pricing/activate')
+  async activatePricingPackage(@Body() request: DeletePricingPackageDto) {
+    try {
+      return this.pricingPackageService.activate(request);
     } catch (error) {
       console.log(error);
       throw new BadRequestException(

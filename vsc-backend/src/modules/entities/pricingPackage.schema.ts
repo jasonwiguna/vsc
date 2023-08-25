@@ -56,6 +56,14 @@ export class PricingPackage {
   })
   perpetualPrice!: number;
 
+  @Column({ type: 'boolean' })
+  @ApiProperty({
+    type: Boolean,
+    description: 'Active',
+    example: true,
+  })
+  active!: boolean;
+
   @BeforeInsert()
   addId(): void {
     this.id = v4();

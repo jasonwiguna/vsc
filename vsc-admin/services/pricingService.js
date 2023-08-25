@@ -3,7 +3,7 @@ import { backendAxiosInstance } from './axiosInstance'
 /* Fetchers */
 export function fetchPricing() {
     return backendAxiosInstance
-      .get(`/backend/pricing`)
+      .get(`/backend/pricing/all`)
       .then((res) => res.data)
   }
 
@@ -21,6 +21,12 @@ export function editPricing(values) {
 
 export function deletePricing(values) {
   return backendAxiosInstance
-    .delete(`/backend/pricing`, values)
+    .post(`/backend/pricing/delete`, values)
+    .then((res) => res.data)
+}
+
+export function activatePricing(values) {
+  return backendAxiosInstance
+    .post(`/backend/pricing/activate`, values)
     .then((res) => res.data)
 }

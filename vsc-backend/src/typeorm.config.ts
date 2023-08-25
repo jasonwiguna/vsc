@@ -5,6 +5,7 @@ import entities from 'src/modules/entities/index';
 import { CreateTables1686219818833 } from 'src/migrations/1686219818833-CreateTables';
 import { CreateTableAuthentication1690479228870 } from 'src/migrations/1690479228870-CreateTableAuthentication';
 import { AddPerpetualPrice1691828853404 } from './migrations/1691828853404-AddPerpetualPrice';
+import { AddActive1692983750912 } from './migrations/1692983750912-AddActive';
 
 config();
 
@@ -22,5 +23,6 @@ export default new DataSource({
     CreateTables1686219818833,
     CreateTableAuthentication1690479228870,
     AddPerpetualPrice1691828853404,
+    AddActive1692983750912,
   ],
 });
