@@ -273,6 +273,7 @@ export default function Resources() {
                 {/* <i className="fa fa-arrow-right" /> */}
               </button>
             )}
+            renderBottomCenterControls={false}
           >
             <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png' style={{maxWidth:"90%", margin:"0 auto"}}/>
             <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png' style={{maxWidth:"90%", margin:"0 auto"}}/>
@@ -330,6 +331,7 @@ export default function Resources() {
                 {/* <i className="fa fa-arrow-right" /> */}
               </button>
             )}
+            renderBottomCenterControls={false}
           >
             <div style={{maxWidth:"90%", margin:"0 auto"}}>
               <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png' style={{margin:"1rem auto"}}/>
@@ -353,10 +355,10 @@ export default function Resources() {
           <div className={styles.jacksonville_font}>VSTREAM</div>
         </div>
         <div className={styles.contact_info}>
-          <div className={styles.contact_title}>VSTREAM MEDIA PTE LTD.</div>
+          <div className={styles.contact_title}>VSTREAM ASIA</div>
           <div className={styles.contact_row}>
             <img src='/Icons/icon-08.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
-            <div>hello@vstream.media</div>
+            <div>hello@vstream.asia</div>
           </div>
           <div className={styles.contact_row}>
             <img src='/Icons/icon-07.png' style={{maxWidth:"40px", marginRight: "3px"}}/>

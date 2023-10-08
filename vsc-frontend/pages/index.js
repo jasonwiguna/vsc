@@ -219,16 +219,16 @@ export default function Home() {
               {/* <i className="fa fa-arrow-right" /> */}
             </button>
           )}
+          renderBottomCenterControls={false}
         >
           <img src='/Elements/ENTITY/VSTREAMACADEMY.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
           <img src='/Elements/ENTITY/VSTREAMINDONESIA.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
           <img src='/Elements/ENTITY/VSTREAMTHAILAND.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
-          <img src='/Elements/ENTITY/VSTREAMACADEMY.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
           <img src='/Elements/ENTITY/VSTREAMCONNECT.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
         </Carousel>
         <div className={styles.info_card}>
           <div>
-            VSTREAM ACADEMY is ...
+            Your gateway to a world of knowledge and expertise in Webcasting, Broadcast Technology, Hybrid Workflows and AV-Over-IP (AVoIP). With our extensive experience and unwavering passion for the industry, we have embarked on a mission to share our insights and equip individuals with the skills required to conquer the ever-changing technological landscape. Our carefully designed courses cater to beginners and seasoned professionals alike, providing a comprehensive curriculum that reflects the latest advancements in the industry. Join us at VStream Academy as we empower the industry and anyone seeking to master the art of Broadcast, Webcasting, Video Technology, Hybrid Workflows and AVoIP, shaping a brighter future through education and expertise.
           </div>
         </div>
         <div className={styles.info_content}>
@@ -291,9 +291,7 @@ export default function Home() {
                   {/* <i className="fa fa-arrow-right" /> */}
                 </button>
               )}
-              renderBottomCenterControls={() => {
-                return null
-              }}
+              renderBottomCenterControls={false}
             >
               {projectsPath.map((item) => {
                 return item.map((i) => {
@@ -351,6 +349,7 @@ export default function Home() {
                   {/* <i className="fa fa-arrow-right" /> */}
                 </button>
               )}
+              renderBottomCenterControls={false}
             >
               <div className={styles.info}>
                 <div className={styles.info_image_container}>
@@ -516,10 +515,10 @@ export default function Home() {
           <div className={styles.jacksonville_font}>VSTREAM</div>
         </div>
         <div className={styles.contact_info}>
-          <div className={styles.contact_title}>VSTREAM MEDIA PTE LTD.</div>
+          <div className={styles.contact_title}>VSTREAM ASIA</div>
           <div className={styles.contact_row}>
             <img src='/Icons/icon-08.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
-            <div>hello@vstream.media</div>
+            <div>hello@vstream.asia</div>
           </div>
           <div className={styles.contact_row}>
             <img src='/Icons/icon-07.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
