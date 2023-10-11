@@ -126,6 +126,15 @@
   border-radius: 35px;
 }
 
+@media only screen and (max-width: 767px) {
+  .resources_card {
+    justify-content: center;
+    width: 70% !important;
+    /* margin-left: 60px !important;
+    margin-right: 60px !important; */
+  }
+}
+
 .title_section {
   min-height: 215px;
   display: flex;
@@ -167,6 +176,16 @@
 .card_content {
   margin: 0 0 1rem;
   color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  .card_header {
+    font-size: 3rem;
+  }
+  
+  .card_content {
+    font-size: 13px;
+  }
 }
 
 .about_section {
@@ -300,6 +319,7 @@
 @media only screen and (max-width: 767px) {
   .contact_title {
     text-align: center;
+    display: none;
   }
 }
 

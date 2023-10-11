@@ -11,31 +11,32 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useRouter } from 'next/router'
 
-const pages = [
-  {
-    url: '/#home',
-    description: 'Home'
-  },
-  {
-    url: '/#about',
-    description: 'About Us'
-  },
-  {
-    url: '/resources#resources',
-    description: 'Resources'
-  },
-  {
-    url: '/#partners',
-    description: 'Partners'
-  },
-  {
-    url: '/#contact',
-    description: 'Contact Us'
-  },
-];
-
 function Header() {
   const router = useRouter()
+
+  const pages = [
+    {
+      url: '/#home',
+      description: 'Home'
+    },
+    {
+      url: '/#about',
+      description: 'About Us'
+    },
+    {
+      url: '/resources#resources',
+      description: 'Resources'
+    },
+    {
+      url: '/#partners',
+      description: 'Partners'
+    },
+    {
+      url: `${router.asPath.split('#')[0]}#contact`,
+      description: 'Contact Us'
+    },
+  ];
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {

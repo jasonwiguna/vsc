@@ -219,12 +219,15 @@ export default function Home() {
               {/* <i className="fa fa-arrow-right" /> */}
             </button>
           )}
-          renderBottomCenterControls={false}
+          renderBottomCenterControls={() => {
+            return null
+          }}
         >
           <img src='/Elements/ENTITY/VSTREAMACADEMY.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
+          <img src='/Elements/ENTITY/VSTREAMSINGAPORE.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
           <img src='/Elements/ENTITY/VSTREAMINDONESIA.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
           <img src='/Elements/ENTITY/VSTREAMTHAILAND.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
-          <img src='/Elements/ENTITY/VSTREAMCONNECT.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
+          <img src='/Elements/ENTITY/VStreamSolutions.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
         </Carousel>
         <div className={styles.info_card}>
           <div>
@@ -291,7 +294,9 @@ export default function Home() {
                   {/* <i className="fa fa-arrow-right" /> */}
                 </button>
               )}
-              renderBottomCenterControls={false}
+              renderBottomCenterControls={() => {
+                return null
+              }}
             >
               {projectsPath.map((item) => {
                 return item.map((i) => {
@@ -349,7 +354,9 @@ export default function Home() {
                   {/* <i className="fa fa-arrow-right" /> */}
                 </button>
               )}
-              renderBottomCenterControls={false}
+              renderBottomCenterControls={() => {
+                return null
+              }}
             >
               <div className={styles.info}>
                 <div className={styles.info_image_container}>
@@ -381,7 +388,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div id='contact' className={styles.cta_section}>
+      <div className={styles.cta_section}>
         <img onClick={handleOpen} src='/Elements/cta.png' style={{width:"100%", margin:"0 auto"}}/>
       </div>
 
@@ -509,10 +516,10 @@ export default function Home() {
         </Modal.Body>
       </Modal>
 
-      <div className={styles.contact_section}>
+      <div id='contact' className={styles.contact_section}>
         <div className={styles.contact_logo}>
           <img src='/LOGO/VSTREAM LOGO/VStreamLOGO_Circle.png' style={{maxWidth:"150px", margin:"0 auto"}}/>
-          <div className={styles.jacksonville_font}>VSTREAM</div>
+          <div className={styles.jacksonville_font}>VSTREAM ASIA</div>
         </div>
         <div className={styles.contact_info}>
           <div className={styles.contact_title}>VSTREAM ASIA</div>
@@ -525,10 +532,10 @@ export default function Home() {
             <div>2 Gambas Crescent, Nordcom II Tower 2, #06-34 Singapore 757044</div>
           </div>
           <div className={styles.contact_row}>
-            <img src='/Icons/socialmediaicon-09.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
-            <img src='/Icons/socialmediaicon-12.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
-            <img src='/Icons/socialmediaicon-11.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
-            <div><button className={styles.cta_button}>SCHEDULE A MEETING</button></div>
+            <a href='https://www.facebook.com/VSTREAMMEDIA/' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-09.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='https://instagram.com/vstreammedia' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-12.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='https://www.linkedin.com/company/vstreammedia/' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-11.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='http://bookme.name/vstream' target='_blank' rel='noreferrer'><div><button className={styles.cta_button}>SCHEDULE A MEETING</button></div></a>
           </div>
         </div>
       </div>

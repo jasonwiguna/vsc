@@ -75,7 +75,7 @@ export default function Resources() {
   const { mutate, error } = useMutation(subscribe, {
     onSuccess: () => {
       setSubmissionStatus(statusMap.SUCCESS)
-      handleCloseForm()
+      handleClose()
     },
     onError: () => setSubmissionStatus(statusMap.ERROR),
   })
@@ -111,7 +111,7 @@ export default function Resources() {
         </h1>
       </div>
 
-      <div id='contact' className={styles.cta_section}>
+      <div className={styles.cta_section}>
         <img onClick={handleOpen} src='/Elements/RESOURCES PAGE/cta.png' style={{width:"100%", margin:"0 auto"}}/>
       </div>
 
@@ -273,7 +273,9 @@ export default function Resources() {
                 {/* <i className="fa fa-arrow-right" /> */}
               </button>
             )}
-            renderBottomCenterControls={false}
+            renderBottomCenterControls={() => {
+              return null
+            }}
           >
             <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png' style={{maxWidth:"90%", margin:"0 auto"}}/>
             <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png' style={{maxWidth:"90%", margin:"0 auto"}}/>
@@ -300,6 +302,9 @@ export default function Resources() {
                 {/* <i className="fa fa-arrow-right" /> */}
               </button>
             )}
+            renderBottomCenterControls={() => {
+              return null
+            }}
           >
             <div style={{maxWidth:"90%", margin:"0 auto"}}>
               <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png' style={{margin:"1rem auto"}}/>
@@ -331,17 +336,19 @@ export default function Resources() {
                 {/* <i className="fa fa-arrow-right" /> */}
               </button>
             )}
-            renderBottomCenterControls={false}
+            renderBottomCenterControls={() => {
+              return null
+            }}
           >
-            <div style={{maxWidth:"90%", margin:"0 auto"}}>
+            <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
               <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png' style={{margin:"1rem auto"}}/>
               <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png' style={{margin:"1rem auto"}}/>
             </div>
-            <div style={{maxWidth:"90%", margin:"0 auto"}}>
+            <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
               <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png' style={{margin:"1rem auto"}}/>
               <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png' style={{margin:"1rem auto"}}/>
             </div>
-            <div style={{maxWidth:"90%", margin:"0 auto"}}>
+            <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
               <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png' style={{margin:"1rem auto"}}/>
               <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png' style={{margin:"1rem auto"}}/>
             </div>
@@ -349,10 +356,10 @@ export default function Resources() {
         </div>
       </div>
 
-      <div className={styles.contact_section}>
+      <div id='contact' className={styles.contact_section}>
         <div className={styles.contact_logo}>
           <img src='/LOGO/VSTREAM LOGO/VStreamLOGO_Circle.png' style={{maxWidth:"150px", margin:"0 auto"}}/>
-          <div className={styles.jacksonville_font}>VSTREAM</div>
+          <div className={styles.jacksonville_font}>VSTREAM ASIA</div>
         </div>
         <div className={styles.contact_info}>
           <div className={styles.contact_title}>VSTREAM ASIA</div>
@@ -365,10 +372,10 @@ export default function Resources() {
             <div>2 Gambas Crescent, Nordcom II Tower 2, #06-34 Singapore 757044</div>
           </div>
           <div className={styles.contact_row}>
-            <img src='/Icons/socialmediaicon-09.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
-            <img src='/Icons/socialmediaicon-12.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
-            <img src='/Icons/socialmediaicon-11.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
-            <div><button className={styles.cta_button}>SCHEDULE A MEETING</button></div>
+            <a href='https://www.facebook.com/VSTREAMMEDIA/' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-09.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='https://instagram.com/vstreammedia' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-12.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='https://www.linkedin.com/company/vstreammedia/' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-11.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='http://bookme.name/vstream' target='_blank' rel='noreferrer'><div><button className={styles.cta_button}>SCHEDULE A MEETING</button></div></a>
           </div>
         </div>
       </div>
