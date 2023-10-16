@@ -252,9 +252,9 @@ export default function Resources() {
             renderCenterRightControls={({ nextSlide }) => {}}
             renderBottomCenterControls={() => {}}
           >
-            <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png' style={{maxWidth:"90%", margin:"0 auto"}}/>
-            <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png' style={{maxWidth:"90%", margin:"0 auto"}}/>
-            <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 17.png' style={{maxWidth:"90%", margin:"0 auto"}}/>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 17.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
           </Carousel>
         </div>
         <div className={styles.content_header_mobile}>
@@ -277,9 +277,9 @@ export default function Resources() {
               return null
             }}
           >
-            <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png' style={{maxWidth:"90%", margin:"0 auto"}}/>
-            <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png' style={{maxWidth:"90%", margin:"0 auto"}}/>
-            <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 17.png' style={{maxWidth:"90%", margin:"0 auto"}}/>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 17.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
           </Carousel>
         </div>
         <div className={styles.resources_header}>
@@ -307,16 +307,16 @@ export default function Resources() {
             }}
           >
             <div style={{maxWidth:"90%", margin:"0 auto"}}>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png' style={{margin:"1rem auto"}}/>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png' style={{margin:"1rem auto"}}/>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
             <div style={{maxWidth:"90%", margin:"0 auto"}}>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png' style={{margin:"1rem auto"}}/>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png' style={{margin:"1rem auto"}}/>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
             <div style={{maxWidth:"90%", margin:"0 auto"}}>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png' style={{margin:"1rem auto"}}/>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png' style={{margin:"1rem auto"}}/>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
           </Carousel>
         </div>
@@ -341,16 +341,16 @@ export default function Resources() {
             }}
           >
             <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png' style={{margin:"1rem auto"}}/>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png' style={{margin:"1rem auto"}}/>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
             <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png' style={{margin:"1rem auto"}}/>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png' style={{margin:"1rem auto"}}/>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
             <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png' style={{margin:"1rem auto"}}/>
-              <img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png' style={{margin:"1rem auto"}}/>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
           </Carousel>
         </div>
@@ -358,8 +358,8 @@ export default function Resources() {
 
       <div id='contact' className={styles.contact_section}>
         <div className={styles.contact_logo}>
-          <img src='/LOGO/VSTREAM LOGO/VStreamLOGO_Circle.png' style={{maxWidth:"150px", margin:"0 auto"}}/>
-          <div className={styles.jacksonville_font}>VSTREAM ASIA</div>
+          <img src='/LOGO/VSTREAM LOGO/VSTREAMASIA.png' style={{maxWidth:"220px", margin:"0 auto"}}/>
+          {/* <div className={styles.jacksonville_font}>VSTREAM ASIA</div> */}
         </div>
         <div className={styles.contact_info}>
           <div className={styles.contact_title}>VSTREAM ASIA</div>

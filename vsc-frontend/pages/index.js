@@ -316,11 +316,8 @@ export default function Home() {
               OUR PARTNERS
             </div>
             <div className={styles.info}>
-              <div className={styles.info_image_container}>
-                <img className={styles.info_image} src='/LOGO/PARTNERS LOGO/2560px-NewTek_logo.svg.png'/>
-              </div>
-              <div className={styles.info_image_container}>
-                <img className={styles.info_image_enlarged} src='/LOGO/PARTNERS LOGO/seervision-logo-1.png'/>
+              <div className={styles.info_image_container_big}>
+                <img className={styles.info_image_enlarged} src='/LOGO/PARTNERS LOGO/vzrt.png'/>
               </div>
             </div>
             <div className={styles.info}>
@@ -360,12 +357,7 @@ export default function Home() {
             >
               <div className={styles.info}>
                 <div className={styles.info_image_container}>
-                  <img className={styles.info_image} src='/LOGO/PARTNERS LOGO/2560px-NewTek_logo.svg.png'/>
-                </div>
-              </div>
-              <div className={styles.info}>
-                <div className={styles.info_image_container}>
-                  <img className={styles.info_image} src='/LOGO/PARTNERS LOGO/seervision-logo-1.png'/>
+                  <img className={styles.info_image_enlarged} src='/LOGO/PARTNERS LOGO/vzrt.png'/>
                 </div>
               </div>
               <div className={styles.info}>
@@ -518,8 +510,8 @@ export default function Home() {
 
       <div id='contact' className={styles.contact_section}>
         <div className={styles.contact_logo}>
-          <img src='/LOGO/VSTREAM LOGO/VStreamLOGO_Circle.png' style={{maxWidth:"150px", margin:"0 auto"}}/>
-          <div className={styles.jacksonville_font}>VSTREAM ASIA</div>
+          <img src='/LOGO/VSTREAM LOGO/VSTREAMASIA.png' style={{maxWidth:"220px", margin:"0 auto"}}/>
+          {/* <div className={styles.jacksonville_font}>VSTREAM ASIA</div> */}
         </div>
         <div className={styles.contact_info}>
           <div className={styles.contact_title}>VSTREAM ASIA</div>
