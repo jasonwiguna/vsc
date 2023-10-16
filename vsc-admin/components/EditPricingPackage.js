@@ -1,9 +1,10 @@
-import { useMutation } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { Formik, Form as FormikForm } from 'formik'
 import * as Yup from 'yup'
 import { Row, Col, Form } from 'react-bootstrap'
-import { MyTextInput } from './MyInput';
+import { MySelect, MyTextInput } from './MyInput';
 import { editPricing } from '../services/pricingService';
+import { fetchApps } from '../services/applicationService';
 
 const statusMap = {
   ERROR: 'ERROR',
@@ -16,6 +17,7 @@ const paramMap = {
   monthlyPrice: 'monthlyPrice',
   annualPrice: 'annualPrice',
   perpetualPrice: 'perpetualPrice',
+  applicationId: 'applicationId',
 }
 
 const validationSchema = Yup.object({
@@ -24,9 +26,14 @@ const validationSchema = Yup.object({
   [paramMap.monthlyPrice]: Yup.number().required(),
   [paramMap.annualPrice]: Yup.number().required(),
   [paramMap.perpetualPrice]: Yup.number().required(),
+  [paramMap.applicationId]: Yup.string().nullable(),
 })
 
 export default function EditPricingPackage({ handleClose, refetch, setSubmissionStatus, pricingPackage }) {
+  const { status, data } = useQuery(
+    ['apps'], () => fetchApps()
+  )
+
   const { mutate, error } = useMutation(editPricing, {
     onSuccess: () => {
       setSubmissionStatus(statusMap.SUCCESS)
@@ -42,6 +49,7 @@ export default function EditPricingPackage({ handleClose, refetch, setSubmission
     monthlyPrice: pricingPackage.monthlyPrice,
     annualPrice: pricingPackage.annualPrice,
     perpetualPrice: pricingPackage.perpetualPrice,
+    applicationId: pricingPackage.applicationId,
   }
 
   return (
@@ -96,6 +104,25 @@ export default function EditPricingPackage({ handleClose, refetch, setSubmission
                   required
                   className="mb-3"
                 />
+
+                {/* Package */}
+                <MySelect
+                  label="Application"
+                  id="applicationId"
+                  name={paramMap.applicationId}
+                  disabled={status !== 'success'}
+                  className="mb-3"
+                >
+                  <option value={null}>
+                    {status === 'loading' ? 'Loading…' : 'Select'}
+                  </option>
+                  {status === 'success' &&
+                    data.map((apps) => (
+                      <option key={apps.id} value={apps.id}>
+                        {apps.applicationName}
+                      </option>
+                    ))}
+                </MySelect>
               </Col>
             </Form.Row>
           </div>

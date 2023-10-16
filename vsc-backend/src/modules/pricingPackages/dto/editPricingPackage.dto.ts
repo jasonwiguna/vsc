@@ -46,4 +46,13 @@ export class EditPricingPackageDto {
     example: 50,
   })
   perpetualPrice: number;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({
+    type: String,
+    description: 'Application ID',
+    example: 'xxxx',
+  })
+  applicationId: string;
 }

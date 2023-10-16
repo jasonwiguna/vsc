@@ -16,6 +16,7 @@ import {
   ApiExtraModels,
   ApiOperation,
   ApiResponse,
+  ApiTags,
   ApiUnauthorizedResponse,
   getSchemaPath,
 } from '@nestjs/swagger';
@@ -28,6 +29,7 @@ import { EditPricingPackageDto } from './dto/editPricingPackage.dto';
 import { DeletePricingPackageDto } from './dto/deletePricingPackage.dto';
 
 @Controller()
+@ApiTags('Pricing Package')
 export class PricingPackagesController {
   constructor(private pricingPackageService: PricingPackagesService) {}
 

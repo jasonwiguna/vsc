@@ -162,4 +162,43 @@ export class SubscriptionsService {
       );
     }
   }
+
+  /**
+   * Find a single subscription by userId.
+   *
+   * @param userId The user id to filter by.
+   * @returns {Subscription}
+   */
+  async findActiveSubscriptionByUserId(
+    userId: string,
+  ): Promise<Subscription | undefined> {
+    const user = await this.userModel.findOne({
+      where: { id: userId },
+    });
+    if (user) {
+      return this.subscriptionModel.findOne({
+        relations: ['pricingPackage'],
+        where: [
+          {
+            userId: user.id,
+            subscriptionDate: LessThanOrEqual(new Date()),
+            expirationDate: MoreThanOrEqual(new Date()),
+          },
+          {
+            userId: user.id,
+            subscriptionDate: LessThanOrEqual(new Date()),
+            expirationDate: IsNull(),
+          },
+        ],
+      });
+    } else {
+      throw new BadRequestException(
+        {
+          success: false,
+          response: { success: false, message: 'User does not exist' },
+        },
+        'Bad request',
+      );
+    }
+  }
 }

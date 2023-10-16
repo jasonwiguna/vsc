@@ -2,15 +2,14 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
   BeforeInsert,
-  JoinTable,
   OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { v4 } from 'uuid';
 import { Subscription } from './subscription.schema';
+import { Application } from './application.schema';
 
 @Entity()
 export class PricingPackage {
@@ -64,6 +63,14 @@ export class PricingPackage {
   })
   active!: boolean;
 
+  @Column({ type: 'text' })
+  @ApiProperty({
+    type: String,
+    description: 'Application ID',
+    example: 'string',
+  })
+  applicationId?: string;
+
   @BeforeInsert()
   addId(): void {
     this.id = v4();
@@ -71,4 +78,7 @@ export class PricingPackage {
 
   @OneToMany(() => Subscription, (subscription) => subscription.pricingPackage)
   subscriptions: Subscription[];
+
+  @ManyToOne(() => Application, (application) => application.pricingPackages)
+  application: Application;
 }

@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { useRouter } from 'next/router';
 import AuthRequired from '../components/AuthRequired';
+import 'filepond/dist/filepond.min.css'
 
 const queryClient = new QueryClient()
 

@@ -1,0 +1,29 @@
+.my_filepond {
+    :global(.filepond--drop-label) {
+      font-size: 0.875rem;
+  
+      // Make 'browse' text look like link
+      :global(span) {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  
+    :global(.filepond--panel-root) {
+      background-color: #E8F4F8;
+      border: dashed 2px #4880C8;
+    }
+  
+    // Increase the height
+    :global(.filepond--root),
+    :global(.filepond--drop-label) {
+      height: 160px;
+    }
+  }
+  
+  :global(.formik_error) .my_filepond {
+    :global(.filepond--panel-root) {
+      border-color: #dc3545;
+    }
+  }
+  

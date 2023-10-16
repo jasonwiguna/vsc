@@ -5,12 +5,14 @@ import {
   ApiExtraModels,
   ApiOperation,
   ApiResponse,
+  ApiTags,
   ApiUnauthorizedResponse,
   getSchemaPath,
 } from '@nestjs/swagger';
 import { ErrorResponse } from '../dto/responses.dto';
 
 @Controller()
+@ApiTags('Authentication')
 export class AuthController {
   constructor(private authService: AuthService) {}
 

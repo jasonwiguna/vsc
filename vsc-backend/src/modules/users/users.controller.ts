@@ -18,6 +18,7 @@ import {
   ApiExtraModels,
   ApiOperation,
   ApiResponse,
+  ApiTags,
   ApiUnauthorizedResponse,
   getSchemaPath,
 } from '@nestjs/swagger';
@@ -30,6 +31,7 @@ import { InvalidateHidDto, ValidateHidDto } from './dto/validateHid.dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 
 @Controller()
+@ApiTags('Users')
 export class UsersController {
   constructor(
     private usersService: UsersService,

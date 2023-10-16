@@ -87,6 +87,35 @@ export class PricingPackagesService {
   }
 
   /**
+   * Find a single pricing package by id.
+   *
+   * @param pricingPackageId The package id to filter by.
+   * @returns {PricingPackage}
+   */
+  async findOneByPricingPackageId(
+    pricingPackageId: string,
+  ): Promise<PricingPackage | undefined> {
+    return this.pricingPackageModel.findOne({
+      where: { id: pricingPackageId },
+    });
+  }
+
+  /**
+   * Find a single pricing package by id.
+   *
+   * @param pricingPackageId The package id to filter by.
+   * @returns {PricingPackage}
+   */
+  async findOneByPricingPackageIdWithFile(
+    pricingPackageId: string,
+  ): Promise<PricingPackage | undefined> {
+    return this.pricingPackageModel.findOne({
+      relations: ['application'],
+      where: { id: pricingPackageId },
+    });
+  }
+
+  /**
    * Get all Pricing Package.
    *
    * @returns {PricingPackage[]}
