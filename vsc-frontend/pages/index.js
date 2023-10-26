@@ -133,6 +133,25 @@ export default function Home() {
     '/Images_Carousell/VStream25.png','/Images_Carousell/VStream26.png'
   ]
 
+  const content = [{
+    path: '/Elements/ENTITY/VSTREAMACADEMY.png',
+    message: 'Your gateway to a world of knowledge and expertise in Webcasting, Broadcast Technology, Hybrid Workflows and AV-Over-IP (AVoIP). With our extensive experience and unwavering passion for the industry, we have embarked on a mission to share our insights and equip individuals  with the skills required to conquer the ever-changing technological landscape. Join us at VStream Academy as we empower the industry and anyone seeking to master the art of Broadcast, Webcasting, Video Technology, Hybrid Workflows and AVoIP, shaping a brighter future through education and expertise.'
+  },{
+    path: '/Elements/ENTITY/VSTREAMSINGAPORE.png',
+    message: 'VStream Media: Your Partner in Transforming Hybrid Workflows. Our dedicated team excels in meticulously planning and executing hybrid workflows, enabling teams and organizations to take their productions to the next level. We are committed to equipping our clients with the latest in hybrid technology and equipment, custom-tailored to their ever-evolving needs.\n\nAt the heart of it all is the Newtek TriCaster, a versatile Video Mixing and Live Streaming system. It seamlessly integrates physical and remote sources, making your hybrid productions truly exceptional. What sets us apart is our unwavering commitment to efficiency through the seamless integration of system components using AVoIP protocols and software. Experience a new level of efficiency, innovation, and excellence with VStream Media.'
+  },{
+    path: '/Elements/ENTITY/VSTREAMINDONESIA.png',
+    message: 'VStream Media: Mitra Anda dalam Mengubah Alur Kerja Hybrid. Tim kami ahli dalam merencanakan dan menjalankan alur kerja hybrid dengan cermat, memungkinkan perusahaan dan organisasi untuk membawa produksi mereka ke tingkat berikutnya. Kami berkomitmen untuk melengkapi klien kami dengan teknologi dan peralatan hybrid terbaru yang disesuaikan dengan kebutuhan yang selalu berkembang.\n\nDi pusat semuanya adalah Newtek TriCaster, sistem Pencampuran Video serbaguna dan Penyiaran Langsung. Ini secara mulus mengintegrasikan sumber fisik dan jarak jauh, menjadikan produksi hibrida Anda benar-benar luar biasa. Yang membedakan kami adalah komitmen tak berkesudahan kami terhadap efisiensi melalui integrasi yang mulus dari komponen sistem menggunakan protokol AVoIP dan perangkat lunak. Rasakan tingkat efisiensi, inovasi, dan keunggulan baru dengan VStream Media.'
+  },{
+    path: '/Elements/ENTITY/VSTREAMTHAILAND.png',
+    message: 'VStream Media: พันธมิตรของคุณในการเปลี่ยนแปลง Hybrid Workflows ที่ประสบความสำเร็จอย่างพิถีพิถัน ทีมงานของเรามุ่งสู่การวางแผนและดำเนินการ Hybrid Workflows โดยใส่ใจในรายละเอียด ซึ่งช่วยให้ทีมงานและองค์กรสามารถพัฒนาการผลิตของพวกเขาไปสู่ระดับถัดไปได้อย่างมีประสิทธิภาพ\n\nเรามุ่งมั่นที่จะจัดให้ลูกค้าของเราได้รับการสนับสนุนด้วยเทคโนโลยีและอุปกรณ์ Hybrid ล่าสุดที่ปรับแต่งให้ตรงตามความต้องการที่เปลี่ยนแปลงอยู่เสมอ\n\nที่ใจกลางของทุกสิ่งคือ Newtek TriCaster, ระบบการผสมวิดีโอและสตรีมสดที่หลากหลาย มันทำการผสมรวมทรัพยากรที่อยู่ห่างหากและใกล้กันได้อย่างไร้ปัญหา ทำให้ Hybrid Productions ของคุณเป็นเรื่องพิเศษอย่างแท้จริง\n\nสิ่งที่ทำให้เราโดดเด่นคือความมุ่งมั่นที่ไม่รู้จบในการเพิ่มประสิทธิภาพผ่านการรวมอุปกรณ์ระบบได้อย่างเรียบง่ายโดยใช้โปรโตคอล AVoIP และซอฟต์แวร์ มาสัมผัสระดับใหม่ของประสิทธิภาพ นวัส และความยอดเยี่ยมกับ VStream Media'
+  },{
+    path: '/Elements/ENTITY/VStreamSolutions.png',
+    message: 'VStream Solutions is the Research & Development arm of VStream Asia, where ideas and explored and problems are tackled by creating innovative solutions and pushing the boundaries of what is possible. Our team of innovators aim to create workflows that are more efficient, streamlined and tap onto the latest technologies to develop what we truly believe will enable anyone to do more - By creating Solutions.'
+  }]
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const [isPaused1, setIsPaused1] = useState(false);
   const [isPaused2, setIsPaused2] = useState(false);
   const [imgidx, setImgIdx] = useState(0);
@@ -144,6 +163,20 @@ export default function Home() {
   function handleCloseImg() {
     setIsOpenImg(false)
   }
+
+  let carousel;
+
+  const handleNext = () => {
+    const nextIndex = (currentIndex + 1) % content.length;
+    setCurrentIndex(nextIndex);
+    carousel.goToSlide(nextIndex);
+  };
+
+  const handlePrev = () => {
+    const prevIndex = (currentIndex - 1 + content.length) % content.length;
+    setCurrentIndex(prevIndex);
+    carousel.goToSlide(prevIndex);
+  };
   
   return (
     <div className={styles.container}>
@@ -208,30 +241,35 @@ export default function Home() {
           wrapAround={true} slidesToShow={1} 
           style={{ maxWidth: "76rem", margin: "0 auto" }} cellSpacing={8}
           renderCenterLeftControls={({ previousSlide }) => (
-            <button onClick={previousSlide} style={{background: "transparent", border: "0px solid black"}}>
+            <button onClick={handlePrev} style={{background: "transparent", border: "0px solid black"}}>
               <img className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
               {/* <i className="fa fa-arrow-left" /> */}
             </button>
           )}
           renderCenterRightControls={({ nextSlide }) => (
-            <button onClick={nextSlide} style={{background: "transparent", border: "0px solid black"}}>
+            <button onClick={handleNext} style={{background: "transparent", border: "0px solid black"}}>
               <img src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
               {/* <i className="fa fa-arrow-right" /> */}
             </button>
           )}
+          afterSlide={(slideIndex) => {
+            // Update the state when a slide changes
+            setCurrentIndex(slideIndex);
+          }}
+          ref={(c) => {
+            carousel = c;
+          }}
           renderBottomCenterControls={() => {
             return null
           }}
         >
-          <img src='/Elements/ENTITY/VSTREAMACADEMY.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
-          <img src='/Elements/ENTITY/VSTREAMSINGAPORE.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
-          <img src='/Elements/ENTITY/VSTREAMINDONESIA.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
-          <img src='/Elements/ENTITY/VSTREAMTHAILAND.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
-          <img src='/Elements/ENTITY/VStreamSolutions.png' style={{maxWidth:"70%", margin:"0 auto"}}/>
+          {content.map((c, key) => {
+            return <img key={key} index={key} src={c.path} style={{maxWidth:"70%", margin:"0 auto"}}/>
+          })}
         </Carousel>
         <div className={styles.info_card}>
-          <div>
-            Your gateway to a world of knowledge and expertise in Webcasting, Broadcast Technology, Hybrid Workflows and AV-Over-IP (AVoIP). With our extensive experience and unwavering passion for the industry, we have embarked on a mission to share our insights and equip individuals with the skills required to conquer the ever-changing technological landscape. Our carefully designed courses cater to beginners and seasoned professionals alike, providing a comprehensive curriculum that reflects the latest advancements in the industry. Join us at VStream Academy as we empower the industry and anyone seeking to master the art of Broadcast, Webcasting, Video Technology, Hybrid Workflows and AVoIP, shaping a brighter future through education and expertise.
+          <div style={{ whiteSpace: 'pre-line' }}>
+            {content[currentIndex].message}
           </div>
         </div>
         <div className={styles.info_content}>

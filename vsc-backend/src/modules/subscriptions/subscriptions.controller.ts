@@ -194,9 +194,9 @@ export class SubscriptionsController {
           to: user.email,
           from: senderEmail,
           subject: `${
-            pricingPackage.packageName == 'Camera Connect Pro'
+            pricingPackage.packageName == 'Camera Connect Pro (CCP)'
               ? 'Camera Connect Pro Purchase'
-              : pricingPackage.packageName == 'Camera Connect Ultra'
+              : pricingPackage.packageName == 'Camera Connect Ultra (CCU)'
               ? 'Camera Connect Ultra Purchase'
               : 'License Key for Camera Connect Lite'
           }`,
