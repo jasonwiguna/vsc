@@ -242,13 +242,13 @@ export default function Home() {
           style={{ maxWidth: "76rem", margin: "0 auto" }} cellSpacing={8}
           renderCenterLeftControls={({ previousSlide }) => (
             <button onClick={handlePrev} style={{background: "transparent", border: "0px solid black"}}>
-              <img className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+              <img loading="lazy" className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
               {/* <i className="fa fa-arrow-left" /> */}
             </button>
           )}
           renderCenterRightControls={({ nextSlide }) => (
             <button onClick={handleNext} style={{background: "transparent", border: "0px solid black"}}>
-              <img src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+              <img loading="lazy" src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
               {/* <i className="fa fa-arrow-right" /> */}
             </button>
           )}
@@ -264,7 +264,7 @@ export default function Home() {
           }}
         >
           {content.map((c, key) => {
-            return <img key={key} index={key} src={c.path} style={{maxWidth:"70%", margin:"0 auto"}}/>
+            return <img loading="lazy" key={key} index={key} src={c.path} style={{maxWidth:"70%", margin:"0 auto"}}/>
           })}
         </Carousel>
         <div className={styles.info_card}>
@@ -282,7 +282,7 @@ export default function Home() {
               onMouseLeave={() => setIsPaused1(false)}
             >
               {imagesPath1.map((image, index) => (
-                <img onClick={() => {
+                <img loading="lazy" onClick={() => {
                   setImgIdx(index)
                   setIsOpenImg(true)
                 }} key={index} src={image} alt={`Image ${index + 1}`} />
@@ -293,7 +293,7 @@ export default function Home() {
               onMouseLeave={() => setIsPaused2(false)}
             >
               {imagesPath2.map((image, index) => (
-                <img onClick={() => {
+                <img loading="lazy" onClick={() => {
                   setImgIdx(index + 19)
                   setIsOpenImg(true)
                 }} key={index} src={image} alt={`Image ${index + 1}`} />
@@ -303,11 +303,11 @@ export default function Home() {
               <Modal.Body className={styles.modal}>
                 <div className={styles.modalContainerImg}>
                   <button disabled={imgidx == 0} onClick={() => setImgIdx(Math.max(imgidx - 1, 0))} style={{background: "transparent", border: "0px solid black"}}>
-                    <img className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto", opacity: imgidx == 0 ? '30%' : '100%'}}/>
+                    <img loading="lazy" className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto", opacity: imgidx == 0 ? '30%' : '100%'}}/>
                   </button>
-                  <img style={{ maxWidth: '80%' }} src={imagesPath[imgidx]} alt={`Image`} />
+                  <img loading="lazy" style={{ maxWidth: '80%' }} src={imagesPath[imgidx]} alt={`Image`} />
                   <button disabled={imgidx == imagesPath.length - 1} onClick={() => setImgIdx(Math.min(imgidx + 1, imagesPath.length - 1))} style={{background: "transparent", border: "0px solid black"}}>
-                    <img src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto", opacity: imgidx == imagesPath.length - 1 ? '30%' : '100%'}}/>
+                    <img loading="lazy" src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto", opacity: imgidx == imagesPath.length - 1 ? '30%' : '100%'}}/>
                   </button>
                 </div>
               </Modal.Body>
@@ -322,13 +322,13 @@ export default function Home() {
               style={{ maxWidth: "76rem", margin: "0 auto" }} cellSpacing={8}
               renderCenterLeftControls={({ previousSlide }) => (
                 <button onClick={previousSlide} style={{background: "transparent", border: "0px solid black"}}>
-                  <img className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+                  <img loading="lazy" className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
                   {/* <i className="fa fa-arrow-left" /> */}
                 </button>
               )}
               renderCenterRightControls={({ nextSlide }) => (
                 <button onClick={nextSlide} style={{background: "transparent", border: "0px solid black"}}>
-                  <img src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+                  <img loading="lazy" src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
                   {/* <i className="fa fa-arrow-right" /> */}
                 </button>
               )}
@@ -340,7 +340,7 @@ export default function Home() {
                 return item.map((i) => {
                   return <div key={i} className={styles.info}>
                     <div>
-                      <img className={styles.info_project} src={i}/>
+                      <img loading="lazy" className={styles.info_project} src={i}/>
                     </div>
                   </div>
                 })}
@@ -355,18 +355,18 @@ export default function Home() {
             </div>
             <div className={styles.info}>
               <div className={styles.info_image_container_big}>
-                <img className={styles.info_image_enlarged} src='/LOGO/PARTNERS LOGO/vzrt.png'/>
+                <img loading="lazy" className={styles.info_image_enlarged} src='/LOGO/PARTNERS LOGO/vzrt.png'/>
               </div>
             </div>
             <div className={styles.info}>
               <div className={styles.info_image_container}>
-                <img className={styles.info_image_canon} src='/LOGO/PARTNERS LOGO/Canon-Logo.png'/>
+                <img loading="lazy" className={styles.info_image_canon} src='/LOGO/PARTNERS LOGO/Canon-Logo.png'/>
               </div>
               <div className={styles.info_image_container}>
-                <img className={styles.info_image} src='/LOGO/PARTNERS LOGO/NicePng_dog-logo-png_3546575.png'/>
+                <img loading="lazy" className={styles.info_image} src='/LOGO/PARTNERS LOGO/NicePng_dog-logo-png_3546575.png'/>
               </div>
               <div className={styles.info_image_container}>
-                <img className={styles.info_image} src='/LOGO/PARTNERS LOGO/千视-LOGO标准-1.png'/>
+                <img loading="lazy" className={styles.info_image} src='/LOGO/PARTNERS LOGO/千视-LOGO标准-1.png'/>
               </div>
             </div>
           </h1>
@@ -379,13 +379,13 @@ export default function Home() {
               style={{ maxWidth: "76rem", margin: "0 auto" }} cellSpacing={8}
               renderCenterLeftControls={({ previousSlide }) => (
                 <button onClick={previousSlide} style={{background: "transparent", border: "0px solid black"}}>
-                  <img className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+                  <img loading="lazy" className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
                   {/* <i className="fa fa-arrow-left" /> */}
                 </button>
               )}
               renderCenterRightControls={({ nextSlide }) => (
                 <button onClick={nextSlide} style={{background: "transparent", border: "0px solid black"}}>
-                  <img src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+                  <img loading="lazy" src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
                   {/* <i className="fa fa-arrow-right" /> */}
                 </button>
               )}
@@ -395,22 +395,22 @@ export default function Home() {
             >
               <div className={styles.info}>
                 <div className={styles.info_image_container}>
-                  <img className={styles.info_image_enlarged} src='/LOGO/PARTNERS LOGO/vzrt.png'/>
+                  <img loading="lazy" className={styles.info_image_enlarged} src='/LOGO/PARTNERS LOGO/vzrt.png'/>
                 </div>
               </div>
               <div className={styles.info}>
                 <div className={styles.info_image_container}>
-                  <img className={styles.info_image} src='/LOGO/PARTNERS LOGO/Canon-Logo.png'/>
+                  <img loading="lazy" className={styles.info_image} src='/LOGO/PARTNERS LOGO/Canon-Logo.png'/>
                 </div>
               </div>
               <div className={styles.info}>
                 <div className={styles.info_image_container}>
-                  <img className={styles.info_image} src='/LOGO/PARTNERS LOGO/NicePng_dog-logo-png_3546575.png'/>
+                  <img loading="lazy" className={styles.info_image} src='/LOGO/PARTNERS LOGO/NicePng_dog-logo-png_3546575.png'/>
                 </div>
               </div>
               <div className={styles.info}>
                 <div className={styles.info_image_container}>
-                  <img className={styles.info_image} src='/LOGO/PARTNERS LOGO/千视-LOGO标准-1.png'/>
+                  <img loading="lazy" className={styles.info_image} src='/LOGO/PARTNERS LOGO/千视-LOGO标准-1.png'/>
                 </div>
               </div>
             </Carousel>
@@ -419,7 +419,7 @@ export default function Home() {
       </div>
 
       <div className={styles.cta_section}>
-        <img onClick={handleOpen} src='/Elements/cta.png' style={{width:"100%", margin:"0 auto"}}/>
+        <img loading="lazy" onClick={handleOpen} src='/Elements/cta.png' style={{width:"100%", margin:"0 auto"}}/>
       </div>
 
 
@@ -548,23 +548,23 @@ export default function Home() {
 
       <div id='contact' className={styles.contact_section}>
         <div className={styles.contact_logo}>
-          <img src='/LOGO/VSTREAM LOGO/VSTREAMASIA.png' style={{maxWidth:"220px", margin:"0 auto"}}/>
+          <img loading="lazy" src='/LOGO/VSTREAM LOGO/VSTREAMASIA.png' style={{maxWidth:"220px", margin:"0 auto"}}/>
           {/* <div className={styles.jacksonville_font}>VSTREAM ASIA</div> */}
         </div>
         <div className={styles.contact_info}>
           <div className={styles.contact_title}>VSTREAM ASIA</div>
           <div className={styles.contact_row}>
-            <img src='/Icons/icon-08.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
+            <img loading="lazy" src='/Icons/icon-08.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
             <div>hello@vstream.asia</div>
           </div>
           <div className={styles.contact_row}>
-            <img src='/Icons/icon-07.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
+            <img loading="lazy" src='/Icons/icon-07.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
             <div>2 Gambas Crescent, Nordcom II Tower 2, #06-34 Singapore 757044</div>
           </div>
           <div className={styles.contact_row}>
-            <a href='https://www.facebook.com/VSTREAMMEDIA/' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-09.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
-            <a href='https://instagram.com/vstreammedia' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-12.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
-            <a href='https://www.linkedin.com/company/vstreammedia/' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-11.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='https://www.facebook.com/VSTREAMMEDIA/' target='_blank' rel='noreferrer'><img loading="lazy" src='/Icons/socialmediaicon-09.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='https://instagram.com/vstreammedia' target='_blank' rel='noreferrer'><img loading="lazy" src='/Icons/socialmediaicon-12.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='https://www.linkedin.com/company/vstreammedia/' target='_blank' rel='noreferrer'><img loading="lazy" src='/Icons/socialmediaicon-11.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
             <a href='http://bookme.name/vstream' target='_blank' rel='noreferrer'><div><button className={styles.cta_button}>SCHEDULE A MEETING</button></div></a>
           </div>
         </div>

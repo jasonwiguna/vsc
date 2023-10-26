@@ -112,7 +112,7 @@ export default function Resources() {
       </div>
 
       <div className={styles.cta_section}>
-        <img onClick={handleOpen} src='/Elements/RESOURCES PAGE/cta.png' style={{width:"100%", margin:"0 auto"}}/>
+        <img loading="lazy" onClick={handleOpen} src='/Elements/RESOURCES PAGE/cta.png' style={{width:"100%", margin:"0 auto"}}/>
       </div>
 
 
@@ -241,7 +241,7 @@ export default function Resources() {
 
       <div id='resources' className={styles.info_section}>
         <div className={styles.resources_header}>
-          <img className={styles.resources_icon} src='/LOGO/VSTREAM LOGO/VStreamLOGO_Circle.png'/>
+          <img loading="lazy" className={styles.resources_icon} src='/LOGO/VSTREAM LOGO/VStreamLOGO_Circle.png'/>
           Paid Resources
         </div>
         <div className={styles.content_header}>
@@ -252,9 +252,9 @@ export default function Resources() {
             renderCenterRightControls={({ nextSlide }) => {}}
             renderBottomCenterControls={() => {}}
           >
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 17.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 17.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
           </Carousel>
         </div>
         <div className={styles.content_header_mobile}>
@@ -263,13 +263,13 @@ export default function Resources() {
             style={{ maxWidth: "76rem", margin: "0 auto" }} cellSpacing={8}
             renderCenterLeftControls={({ previousSlide }) => (
               <button onClick={previousSlide} style={{background: "transparent", border: "0px solid black"}}>
-                <img className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+                <img loading="lazy" className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
                 {/* <i className="fa fa-arrow-left" /> */}
               </button>
             )}
             renderCenterRightControls={({ nextSlide }) => (
               <button onClick={nextSlide} style={{background: "transparent", border: "0px solid black"}}>
-                <img src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+                <img loading="lazy" src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
                 {/* <i className="fa fa-arrow-right" /> */}
               </button>
             )}
@@ -277,13 +277,13 @@ export default function Resources() {
               return null
             }}
           >
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 17.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 17.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
           </Carousel>
         </div>
         <div className={styles.resources_header}>
-          <img className={styles.resources_icon} src='/LOGO/VSTREAM LOGO/VStreamLOGO_Circle.png'/>
+          <img loading="lazy" className={styles.resources_icon} src='/LOGO/VSTREAM LOGO/VStreamLOGO_Circle.png'/>
           Free Resources
         </div>
         <div className={styles.content_header}>
@@ -292,13 +292,13 @@ export default function Resources() {
             style={{ maxWidth: "76rem", margin: "0 auto" }} cellSpacing={8}
             renderCenterLeftControls={({ previousSlide }) => (
               <button onClick={previousSlide} style={{background: "transparent", border: "0px solid black"}}>
-                <img className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+                <img loading="lazy" className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
                 {/* <i className="fa fa-arrow-left" /> */}
               </button>
             )}
             renderCenterRightControls={({ nextSlide }) => (
               <button onClick={nextSlide} style={{background: "transparent", border: "0px solid black"}}>
-                <img src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+                <img loading="lazy" src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
                 {/* <i className="fa fa-arrow-right" /> */}
               </button>
             )}
@@ -307,16 +307,16 @@ export default function Resources() {
             }}
           >
             <div style={{maxWidth:"90%", margin:"0 auto"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
             <div style={{maxWidth:"90%", margin:"0 auto"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
             <div style={{maxWidth:"90%", margin:"0 auto"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
           </Carousel>
         </div>
@@ -326,13 +326,13 @@ export default function Resources() {
             style={{ maxWidth: "76rem", margin: "0 auto" }} cellSpacing={8}
             renderCenterLeftControls={({ previousSlide }) => (
               <button onClick={previousSlide} style={{background: "transparent", border: "0px solid black"}}>
-                <img className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+                <img loading="lazy" className={styles.flip} src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
                 {/* <i className="fa fa-arrow-left" /> */}
               </button>
             )}
             renderCenterRightControls={({ nextSlide }) => (
               <button onClick={nextSlide} style={{background: "transparent", border: "0px solid black"}}>
-                <img src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
+                <img loading="lazy" src='/Elements/shadowarrow-01.png' style={{maxWidth:"50px", margin:"0 auto"}}/>
                 {/* <i className="fa fa-arrow-right" /> */}
               </button>
             )}
@@ -341,16 +341,16 @@ export default function Resources() {
             }}
           >
             <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
             <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
             <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png'/><img className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
             </div>
           </Carousel>
         </div>
@@ -358,23 +358,23 @@ export default function Resources() {
 
       <div id='contact' className={styles.contact_section}>
         <div className={styles.contact_logo}>
-          <img src='/LOGO/VSTREAM LOGO/VSTREAMASIA.png' style={{maxWidth:"220px", margin:"0 auto"}}/>
+          <img loading="lazy" src='/LOGO/VSTREAM LOGO/VSTREAMASIA.png' style={{maxWidth:"220px", margin:"0 auto"}}/>
           {/* <div className={styles.jacksonville_font}>VSTREAM ASIA</div> */}
         </div>
         <div className={styles.contact_info}>
           <div className={styles.contact_title}>VSTREAM ASIA</div>
           <div className={styles.contact_row}>
-            <img src='/Icons/icon-08.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
+            <img loading="lazy" src='/Icons/icon-08.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
             <div>hello@vstream.asia</div>
           </div>
           <div className={styles.contact_row}>
-            <img src='/Icons/icon-07.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
+            <img loading="lazy" src='/Icons/icon-07.png' style={{maxWidth:"40px", marginRight: "3px"}}/>
             <div>2 Gambas Crescent, Nordcom II Tower 2, #06-34 Singapore 757044</div>
           </div>
           <div className={styles.contact_row}>
-            <a href='https://www.facebook.com/VSTREAMMEDIA/' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-09.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
-            <a href='https://instagram.com/vstreammedia' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-12.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
-            <a href='https://www.linkedin.com/company/vstreammedia/' target='_blank' rel='noreferrer'><img src='/Icons/socialmediaicon-11.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='https://www.facebook.com/VSTREAMMEDIA/' target='_blank' rel='noreferrer'><img loading="lazy" src='/Icons/socialmediaicon-09.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='https://instagram.com/vstreammedia' target='_blank' rel='noreferrer'><img loading="lazy" src='/Icons/socialmediaicon-12.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
+            <a href='https://www.linkedin.com/company/vstreammedia/' target='_blank' rel='noreferrer'><img loading="lazy" src='/Icons/socialmediaicon-11.png' style={{maxWidth:"40px", marginRight: "3px"}}/></a>
             <a href='http://bookme.name/vstream' target='_blank' rel='noreferrer'><div><button className={styles.cta_button}>SCHEDULE A MEETING</button></div></a>
           </div>
         </div>
