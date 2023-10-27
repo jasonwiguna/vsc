@@ -9,9 +9,16 @@ import { Subscription } from '../entities/subscription.schema';
 import { User } from '../entities/user.schema';
 import { MulterModule } from '@nestjs/platform-express';
 import * as multer from 'multer';
+import { Application } from '../entities/application.schema';
+import { ApplicationsService } from '../applications/applications.service';
 @Module({
   controllers: [StorageController],
-  providers: [StorageService, PricingPackagesService, SubscriptionsService],
+  providers: [
+    ApplicationsService,
+    StorageService,
+    PricingPackagesService,
+    SubscriptionsService,
+  ],
   exports: [StorageService],
   imports: [
     MulterModule.registerAsync({
@@ -24,6 +31,7 @@ import * as multer from 'multer';
     }),
     TypeOrmModule.forFeature([PricingPackage]),
     TypeOrmModule.forFeature([Subscription]),
+    TypeOrmModule.forFeature([Application]),
     TypeOrmModule.forFeature([User]),
   ],
 })

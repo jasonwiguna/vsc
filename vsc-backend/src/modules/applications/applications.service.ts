@@ -70,4 +70,16 @@ export class ApplicationsService {
       order: { applicationName: 'ASC' },
     });
   }
+
+  /**
+   * Find a single application by id.
+   *
+   * @param applicationId The application id to filter by.
+   * @returns {Application}
+   */
+  async findOneById(applicationId: string): Promise<Application | undefined> {
+    return this.applicationModel.findOne({
+      where: { id: applicationId },
+    });
+  }
 }

@@ -7,6 +7,7 @@ import { CreateTableAuthentication1690479228870 } from 'src/migrations/169047922
 import { AddPerpetualPrice1691828853404 } from './migrations/1691828853404-AddPerpetualPrice';
 import { AddActive1692983750912 } from './migrations/1692983750912-AddActive';
 import { CreateTableApplication1696689348692 } from './migrations/1696689348692-CreateTableApplication';
+import { CreateTableResource1698429168566 } from './migrations/1698429168566-CreateTableResource';
 
 config();
 
@@ -26,5 +27,6 @@ export default new DataSource({
     AddPerpetualPrice1691828853404,
     AddActive1692983750912,
     CreateTableApplication1696689348692,
+    CreateTableResource1698429168566,
   ],
 });

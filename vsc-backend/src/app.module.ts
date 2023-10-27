@@ -14,6 +14,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { StoragedModule } from './modules/storage/storage.module';
 import { ApplicationsModule } from './modules/applications/applications.module';
+import { ResourcesModule } from './modules/resources/resources.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { ApplicationsModule } from './modules/applications/applications.module';
     UsersModule,
     SubscriptionsModule,
     PricingPackagesModule,
+    ResourcesModule,
     GlobalModule,
     MailerModule.forRootAsync({
       useFactory: () => ({

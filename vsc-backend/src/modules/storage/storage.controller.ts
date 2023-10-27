@@ -15,6 +15,7 @@ import { Response } from 'express';
 import { PricingPackagesService } from '../pricingPackages/pricingPackages.service';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { ApplicationsService } from '../applications/applications.service';
 
 @Controller('storage')
 @ApiTags('Storage')
@@ -23,6 +24,7 @@ export class StorageController {
     private readonly storageService: StorageService,
     private pricingPackageService: PricingPackagesService,
     private subscriptionService: SubscriptionsService,
+    private applicationService: ApplicationsService,
   ) {}
 
   @Get('/download/:packageId/:userId')
@@ -32,48 +34,58 @@ export class StorageController {
     @Res() res: Response,
   ): Promise<void> {
     try {
-      const subscription =
-        await this.subscriptionService.findActiveSubscriptionByUserId(userId);
-
-      if (subscription.pricingPackageId == packageId) {
-        const pp =
-          await this.pricingPackageService.findOneByPricingPackageIdWithFile(
-            packageId,
-          );
-        // Define the bucket and file path where your zip files are stored
-        const bucketName = pp.application.bucket;
-        const filePath = pp.application.path;
-
-        // Get a reference to the file
-        const file = this.storageService
-          .getStorage()
-          .bucket(bucketName)
-          .file(filePath);
-
-        // Check if the file exists in Google Cloud Storage
-        const [exists] = await file.exists();
-
-        if (!exists) {
-          throw new NotFoundException('File not found in gcs');
-        }
-
-        // Set response headers for file download
-        res.setHeader(
-          'Content-Disposition',
-          `attachment; filename="${pp.application.applicationName}.zip"`,
-        );
-        res.setHeader('Content-Type', 'application/zip');
-
-        // Stream the file to the response
-        file
-          .createReadStream()
-          .on('error', (err) => {
-            throw err;
-          })
-          .pipe(res);
+      let bucketName;
+      let filePath;
+      let applicationName;
+      if (userId == 'website') {
+        const app = await this.applicationService.findOneById(packageId);
+        bucketName = app.bucket;
+        filePath = app.path;
+        applicationName = app.applicationName;
       } else {
-        throw new UnauthorizedException('You are not subscribed');
+        const subscription =
+          await this.subscriptionService.findActiveSubscriptionByUserId(userId);
+
+        if (subscription.pricingPackageId == packageId) {
+          const pp =
+            await this.pricingPackageService.findOneByPricingPackageIdWithFile(
+              packageId,
+            );
+          bucketName = pp.application.bucket;
+          filePath = pp.application.path;
+          applicationName = pp.application.applicationName;
+        } else {
+          throw new UnauthorizedException('You are not subscribed');
+        }
       }
+
+      // Get a reference to the file
+      const file = this.storageService
+        .getStorage()
+        .bucket(bucketName)
+        .file(filePath);
+
+      // Check if the file exists in Google Cloud Storage
+      const [exists] = await file.exists();
+
+      if (!exists) {
+        throw new NotFoundException('File not found in gcs');
+      }
+
+      // Set response headers for file download
+      res.setHeader(
+        'Content-Disposition',
+        `attachment; filename="${applicationName}.zip"`,
+      );
+      res.setHeader('Content-Type', 'application/zip');
+
+      // Stream the file to the response
+      file
+        .createReadStream()
+        .on('error', (err) => {
+          throw err;
+        })
+        .pipe(res);
     } catch (error) {
       console.log(error);
       throw new NotFoundException('File not found');
@@ -83,8 +95,11 @@ export class StorageController {
   @ApiResponse({
     status: 200,
   })
-  @Get('/presigned/:fileName')
-  async getPresignedUrl(@Param('fileName') fileName: string) {
+  @Get('/presigned/:type/:fileName')
+  async getPresignedUrl(
+    @Param('type') type: string,
+    @Param('fileName') fileName: string,
+  ) {
     try {
       const options = {
         version: 'v4',
@@ -98,7 +113,7 @@ export class StorageController {
       const [url] = await this.storageService
         .getStorage()
         .bucket(bucketName)
-        .file(`applications/${fileName}`)
+        .file(`${type == 'app' ? 'applications' : 'resources'}/${fileName}`)
         .getSignedUrl(options);
 
       return { url: url };
@@ -110,16 +125,19 @@ export class StorageController {
   @ApiResponse({
     status: 201,
   })
-  @Post('/upload/:fileName')
+  @Post('/upload/:type/:fileName')
   @UseInterceptors(FileInterceptor('file'))
   async uploadApplication(
+    @Param('type') type: string,
     @Param('fileName') fileName: string,
     @UploadedFile() file: Express.Multer.File,
   ) {
     try {
       const bucketName = 'vstreamasiabucket';
       const bucket = this.storageService.getStorage().bucket(bucketName); // Replace with your GCS bucket name
-      const blob = bucket.file(`applications/${fileName}`);
+      const blob = bucket.file(
+        `${type == 'app' ? 'applications' : 'resources'}/${fileName}`,
+      );
 
       // Create a writable stream and upload the file to GCS
       const stream = blob.createWriteStream({
@@ -131,7 +149,11 @@ export class StorageController {
 
       stream.end(file.buffer);
 
-      return { url: `${bucketName}/applications/${fileName}` };
+      return {
+        url: `${bucketName}/${
+          type == 'app' ? 'applications' : 'resources'
+        }/${fileName}`,
+      };
     } catch (error) {
       throw new NotFoundException('File not found');
     }

@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css';
 import Carousel from 'nuka-carousel';
 import { Modal } from 'react-bootstrap'
 import { useState } from 'react';
-import { fetchPricing, subscribe } from '../services/subscriptionService';
+import { fetchPricing, fetchResources, subscribe } from '../services/subscriptionService';
 import { useQuery, useMutation } from 'react-query'
 import { Formik, Form as FormikForm } from 'formik'
 import * as Yup from 'yup'
@@ -61,6 +61,10 @@ export default function Resources() {
   const { status, data } = useQuery(
     ['pricing'], () => fetchPricing()
   )
+  const { status: statusResources, data: dataResources } = useQuery(
+    ['resource'], () => fetchResources()
+  )
+
   const [isOpen, setIsOpen] = useState(false)
 
   function handleOpen() {
@@ -252,9 +256,11 @@ export default function Resources() {
             renderCenterRightControls={({ nextSlide }) => {}}
             renderBottomCenterControls={() => {}}
           >
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 17.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+            {dataResources?.filter((resource) => {
+              return resource.section == 'PAID'
+            }).map((resource) => {
+              return <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><a href={`/download?p=${resource.applicationId}&u=website`} target="_blank"><img loading="lazy" className={styles.resources_card} src={`https://storage.googleapis.com/${resource.bucket}/${resource.path}`}/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></a></div>
+            })}
           </Carousel>
         </div>
         <div className={styles.content_header_mobile}>
@@ -277,9 +283,11 @@ export default function Resources() {
               return null
             }}
           >
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 15.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 16.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-            <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 17.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
+            {dataResources?.filter((resource) => {
+              return resource.section == 'PAID'
+            }).map((resource) => {
+              return <div className={styles.resources_card_container} style={{maxWidth:"90%", margin:"0 auto", position:"relative"}}><a href={`/download?p=${resource.applicationId}&u=website`} target="_blank"><img loading="lazy" className={styles.resources_card} src={`https://storage.googleapis.com/${resource.bucket}/${resource.path}`}/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></a></div>
+            })}
           </Carousel>
         </div>
         <div className={styles.resources_header}>
@@ -306,18 +314,19 @@ export default function Resources() {
               return null
             }}
           >
-            <div style={{maxWidth:"90%", margin:"0 auto"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-            </div>
-            <div style={{maxWidth:"90%", margin:"0 auto"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-            </div>
-            <div style={{maxWidth:"90%", margin:"0 auto"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-            </div>
+            {dataResources?.filter((resource) => {
+              return resource.section == 'FREE'
+            }).reduce((accumulator, currentValue, currentIndex, array) => {
+              if (currentIndex % 2 === 0) {
+                accumulator.push(array.slice(currentIndex, currentIndex + 2));
+              }
+              return accumulator;
+            }, []).map((resource) => {
+              return <div style={{maxWidth:"90%", margin:"0 auto"}}>
+                <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><a href={`/download?p=${resource.applicationId}&u=website`} target="_blank"><img loading="lazy" className={styles.resources_card} src={`https://storage.googleapis.com/${resource[0].bucket}/${resource[0].path}`}/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></a></div>
+                {resource.length > 1 && <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><a href={`/download?p=${resource.applicationId}&u=website`} target="_blank"><img loading="lazy" className={styles.resources_card} src={`https://storage.googleapis.com/${resource[1].bucket}/${resource[1].path}`}/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></a></div>}
+              </div>
+            })}
           </Carousel>
         </div>
         <div className={styles.content_header_mobile}>
@@ -340,18 +349,19 @@ export default function Resources() {
               return null
             }}
           >
-            <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 9.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 10.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-            </div>
-            <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 11.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 12.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-            </div>
-            <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 13.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-              <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><img loading="lazy" className={styles.resources_card} src='/Elements/RESOURCES PAGE/Frame 14.png'/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></div>
-            </div>
+            {dataResources?.filter((resource) => {
+              return resource.section == 'FREE'
+            }).reduce((accumulator, currentValue, currentIndex, array) => {
+              if (currentIndex % 2 === 0) {
+                accumulator.push(array.slice(currentIndex, currentIndex + 2));
+              }
+              return accumulator;
+            }, []).map((resource) => {
+              return <div style={{margin:"0 auto", justifyContent:"center", display:"flex", flexDirection:"column"}}>
+                <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><a href={`/download?p=${resource.applicationId}&u=website`} target="_blank"><img loading="lazy" className={styles.resources_card} src={`https://storage.googleapis.com/${resource[0].bucket}/${resource[0].path}`}/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></a></div>
+                {resource.length > 1 && <div className={styles.resources_card_container} style={{margin:"1rem auto", position:"relative"}}><a href={`/download?p=${resource.applicationId}&u=website`} target="_blank"><img loading="lazy" className={styles.resources_card} src={`https://storage.googleapis.com/${resource[1].bucket}/${resource[1].path}`}/><img loading="lazy" className={styles.download_icon} src='/Icons/download.png'/></a></div>}
+              </div>
+            })}
           </Carousel>
         </div>
       </div>

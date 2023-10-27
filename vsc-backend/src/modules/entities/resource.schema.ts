@@ -3,15 +3,14 @@ import {
   Column,
   PrimaryGeneratedColumn,
   BeforeInsert,
-  OneToMany,
+  ManyToOne,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { v4 } from 'uuid';
-import { PricingPackage } from './pricingPackage.schema';
-import { Resource } from './resource.schema';
+import { Application } from './application.schema';
 
 @Entity()
-export class Application {
+export class Resource {
   @PrimaryGeneratedColumn('uuid')
   @ApiProperty({
     type: String,
@@ -28,7 +27,7 @@ export class Application {
     description: 'Application Name',
     example: 'string',
   })
-  applicationName!: string;
+  resourceName!: string;
 
   @Column({ type: 'text' })
   @ApiProperty({
@@ -54,17 +53,35 @@ export class Application {
   })
   filename!: string;
 
+  @Column({ type: 'text' })
+  @ApiProperty({
+    type: String,
+    description: 'Application ID',
+    example: 'string',
+  })
+  applicationId!: string;
+
+  @Column({ type: 'integer' })
+  @ApiProperty({
+    type: Number,
+    description: 'Priority',
+    example: 1,
+  })
+  priority!: number;
+
+  @Column({ type: 'text' })
+  @ApiProperty({
+    type: String,
+    description: 'Section',
+    example: 'PAID',
+  })
+  section!: string;
+
   @BeforeInsert()
   addId(): void {
     this.id = v4();
   }
 
-  @OneToMany(
-    () => PricingPackage,
-    (pricingPackage) => pricingPackage.application,
-  )
-  pricingPackages: PricingPackage[];
-
-  @OneToMany(() => Resource, (resource) => resource.application)
-  resources: Resource[];
+  @ManyToOne(() => Application, (application) => application.resources)
+  application: Application;
 }

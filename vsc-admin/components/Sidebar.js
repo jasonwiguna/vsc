@@ -112,6 +112,9 @@ export default function MiniDrawer() {
   }, {
     path: '/admin/applications',
     description: 'Applications'
+  }, {
+    path: '/admin/resources',
+    description: 'Resources'
   }]
 
   return (

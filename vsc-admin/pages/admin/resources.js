@@ -4,9 +4,9 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { useMutation, useQuery } from 'react-query';
 import { useState } from 'react';
 import { Modal } from 'react-bootstrap';
-import { deleteApp, fetchApps } from '../../services/applicationService';
-import AddApp from '../../components/AddApp';
-import EditApp from '../../components/EditApp';
+import { deleteResource, fetchResources } from '../../services/resourceService';
+import AddResource from '../../components/AddResource';
+import EditResource from '../../components/EditResource';
 
 const statusMap = {
   ERROR: 'ERROR',
@@ -33,9 +33,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-export default function Applications() {
+export default function Resources() {
   const { status, data, refetch } = useQuery(
-    ['pricing'], () => fetchApps()
+    ['resource'], () => fetchResources()
   )
 
   const [isOpen, setIsOpen] = useState(false)
@@ -47,12 +47,12 @@ export default function Applications() {
     setIsOpen(false)
   }
 
-  const [app, setApp] = useState(null)
+  const [resource, setResource] = useState(null)
   const [action, setAction] = useState('ADD')
   
   const [submissionStatus, setSubmissionStatus] = useState(null)
 
-  const { mutate } = useMutation(deleteApp, {
+  const { mutate } = useMutation(deleteResource, {
     onSuccess: () => {
       setSubmissionStatus(statusMap.SUCCESS)
       refetch()
@@ -71,8 +71,11 @@ export default function Applications() {
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>App Name</StyledTableCell>
-              {/* <StyledTableCell align="right">Action</StyledTableCell> */}
+              <StyledTableCell>Resource Name</StyledTableCell>
+              <StyledTableCell align="right">Section</StyledTableCell>
+              <StyledTableCell align="right">Priority</StyledTableCell>
+              <StyledTableCell align="right">App</StyledTableCell>
+              <StyledTableCell align="right">Action</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -81,11 +84,14 @@ export default function Applications() {
                 <StyledTableCell component="th" scope="row">
                   <a onClick={() => {
                     setAction('EDIT')
-                    setApp(row)
+                    setResource(row)
                     handleOpen()
-                  }} style={{ cursor: 'pointer' }}>{row.applicationName}</a>
+                  }} style={{ cursor: 'pointer' }}>{row.resourceName}</a>
                 </StyledTableCell>
-                {/* <StyledTableCell align="right"><a onClick={() => mutate({ id: row.id })} style={{ cursor: 'pointer' }}>Remove</a></StyledTableCell> */}
+                <StyledTableCell align="right">{row.section}</StyledTableCell>
+                <StyledTableCell align="right">{row.priority}</StyledTableCell>
+                <StyledTableCell align="right">{row.application.applicationName}</StyledTableCell>
+                <StyledTableCell align="right"><a onClick={() => mutate({ id: row.id })} style={{ cursor: 'pointer' }}>Remove</a></StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>
@@ -101,8 +107,8 @@ export default function Applications() {
         <Modal.Body className={styles.modal}>
           <div className={styles.modalContainer}>
             {action == 'ADD' ?
-              <AddApp handleClose={handleClose} refetch={refetch} setSubmissionStatus={setSubmissionStatus} /> :
-              <EditApp handleClose={handleClose} refetch={refetch} setSubmissionStatus={setSubmissionStatus} app={app} />
+              <AddResource handleClose={handleClose} refetch={refetch} setSubmissionStatus={setSubmissionStatus} /> :
+              <EditResource handleClose={handleClose} refetch={refetch} setSubmissionStatus={setSubmissionStatus} resource={resource} />
             }
           </div>
         </Modal.Body>

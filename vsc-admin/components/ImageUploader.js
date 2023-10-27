@@ -15,12 +15,11 @@ registerPlugin(FilePondPluginFileValidateType)
 // https://pqina.nl/filepond/docs/patterns/plugins/file-validate-size/
 registerPlugin(FilePondPluginFileValidateSize)
 
-const acceptedMimeTypes = [
-  'application/zip',
-]
-const acceptedFileTypesStr = 'zip'
-const maxFileSizeFilepond = '100MB'
-const maxFileSizeStr = '100 MB'
+const acceptedMimeTypes = ['image/jpeg', 'image/png']
+const acceptedFileTypesStr = 'jpg / jpeg / png'
+const maxFileSizeFilepond = '2MB'
+const maxFileSizeStr = '2 MB'
+const fileRecommendationStr = 'PNG 1440px × 1440px'
 
 export const paramMap = {
   FILENAME_WITHOUT_EXTENSION: 'filenameWithoutExtension',
@@ -37,7 +36,7 @@ export const validationSchema = {
   [paramMap.FILE_EXTENSION]: Yup.string().required(),
 }
 
-export default function FileUploader() {
+export default function ImageUploader() {
   const [files, setFiles] = useState([])
   const formik = useFormikContext()
 
@@ -80,8 +79,12 @@ export default function FileUploader() {
             progress,
             abort
           ) => {
+            // 1. Update parent form state
+            // metadata was set by `onaddfile`
+            const {
+              file_extension: fileExtension,
+            } = metadata.file_info
             const filenameWithoutExtension = `${v4()}`
-            const fileExtension = 'zip'
             const filename = `${filenameWithoutExtension}.${fileExtension}`
 
             const {
@@ -99,7 +102,7 @@ export default function FileUploader() {
 
             try {
               // Upload to GCS
-              await backendAxiosInstance.post(`/backend/storage/upload/app/${filename}`, formData, {
+              await backendAxiosInstance.post(`/backend/storage/upload/resource/${filename}`, formData, {
                 headers: {
                   "Content-Type": 'application/zip'
                 },
@@ -139,7 +142,7 @@ export default function FileUploader() {
         // className="py-3"
         className={styles.my_filepond}
       />
-      <div className="text-muted small px-3">
+      <div className="text-muted small px-3 mb-3">
         {formikHasRelevantError ? (
           <div className="text-danger">Required</div>
         ) : null}

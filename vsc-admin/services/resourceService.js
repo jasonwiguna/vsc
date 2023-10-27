@@ -1,32 +1,32 @@
 import { backendAxiosInstance } from './axiosInstance'
 
 /* Fetchers */
-export function fetchApps() {
+export function fetchResources() {
     return backendAxiosInstance
-      .get(`/backend/application`)
+      .get(`/backend/resource/all`)
       .then((res) => res.data)
   }
 
-export function addApp(values) {
+export function addResource(values) {
   return backendAxiosInstance
-    .post(`/backend/application`, values)
+    .post(`/backend/resource`, values)
     .then((res) => res.data)
 }
 
-export function editApp(values) {
+export function editResource(values) {
   return backendAxiosInstance
-    .put(`/backend/application`, values)
+    .put(`/backend/resource`, values)
     .then((res) => res.data)
 }
 
-export function deleteApp(values) {
+export function deleteResource(values) {
   return backendAxiosInstance
-    .post(`/backend/application/delete`, values)
+    .post(`/backend/resource/delete`, values)
     .then((res) => res.data)
 }
 
 export function presignedPost(filename) {
   return backendAxiosInstance
-    .get(`/backend/storage/presigned/app/${filename}`)
+    .get(`/backend/storage/presigned/resource/${filename}`)
     .then((res) => res.data)
 }

@@ -7,6 +7,12 @@ export function fetchPricing() {
       .then((res) => res.data)
   }
 
+export function fetchResources() {
+    return backendAxiosInstance
+      .get(`/backend/resource`)
+      .then((res) => res.data)
+  }
+
 export function subscribe(values) {
   return backendAxiosInstance
     .post(`/backend/subscribe`, values)
