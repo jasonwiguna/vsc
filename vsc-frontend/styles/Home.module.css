@@ -244,7 +244,9 @@
   width: 100%;
   /* background-color: #4e4b4c; */
   background-image: url('/Background/background5.png');
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #4e4b4c;
 }
 
 @media only screen and (min-width: 768px) {
