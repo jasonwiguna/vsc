@@ -354,8 +354,11 @@ export default function Home() {
               OUR PARTNERS
             </div>
             <div className={styles.info}>
-              <div className={styles.info_image_container_big}>
-                <img loading="lazy" className={styles.info_image_enlarged} src='/LOGO/PARTNERS LOGO/vzrt.png'/>
+              <div className={styles.info_image_container}>
+                <img loading="lazy" className={styles.info_image} src='/LOGO/PARTNERS LOGO/vzrt.png'/>
+              </div>
+              <div className={styles.info_image_container}>
+                <img loading="lazy" className={styles.info_image} src='/LOGO/PARTNERS LOGO/RT_logo.png'/>
               </div>
             </div>
             <div className={styles.info}>
@@ -395,7 +398,12 @@ export default function Home() {
             >
               <div className={styles.info}>
                 <div className={styles.info_image_container}>
-                  <img loading="lazy" className={styles.info_image_enlarged} src='/LOGO/PARTNERS LOGO/vzrt.png'/>
+                  <img loading="lazy" className={styles.info_image} src='/LOGO/PARTNERS LOGO/vzrt.png'/>
+                </div>
+              </div>
+              <div className={styles.info}>
+                <div className={styles.info_image_container}>
+                  <img loading="lazy" className={styles.info_image} src='/LOGO/PARTNERS LOGO/RT_logo.png'/>
                 </div>
               </div>
               <div className={styles.info}>
