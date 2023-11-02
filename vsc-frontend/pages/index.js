@@ -427,7 +427,7 @@ export default function Home() {
       </div>
 
       <div className={styles.cta_section}>
-        <img loading="lazy" onClick={handleOpen} src='/Elements/cta.png' style={{width:"100%", margin:"0 auto"}}/>
+        <a href='/resources#resources'><img loading="lazy" src='/Elements/cta.png' style={{width:"100%", margin:"0 auto"}}/></a>
       </div>
 
 

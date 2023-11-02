@@ -140,7 +140,7 @@ export default function Resources() {
                         label="Firstname"
                         id="firstname"
                         name={paramMap.firstname}
-                        placeholder="John"
+                        placeholder="Insert firstname..."
                         required
                         className="mb-3"
                       />
@@ -151,7 +151,7 @@ export default function Resources() {
                         label="Lastname"
                         id="lastname"
                         name={paramMap.lastname}
-                        placeholder="Doe"
+                        placeholder="Insert lastname..."
                         required
                         className="mb-3"
                       />
@@ -162,7 +162,7 @@ export default function Resources() {
                         label="Company"
                         id="company"
                         name={paramMap.company}
-                        placeholder="VStream"
+                        placeholder="Insert company..."
                         required
                         className="mb-3"
                       />
@@ -173,7 +173,7 @@ export default function Resources() {
                         label="Email"
                         id="email"
                         name={paramMap.email}
-                        placeholder="example@email.com"
+                        placeholder="Insert email..."
                         required
                         className="mb-3"
                       />
@@ -184,7 +184,7 @@ export default function Resources() {
                         label="Phone"
                         id="phone"
                         name={paramMap.phone}
-                        placeholder="81234567"
+                        placeholder="Insert phone number..."
                         required
                         className="mb-3"
                       />
@@ -195,7 +195,7 @@ export default function Resources() {
                         label="Country"
                         id="country"
                         name={paramMap.country}
-                        placeholder="Singapore"
+                        placeholder="Insert country..."
                         required
                         className="mb-3"
                       />
